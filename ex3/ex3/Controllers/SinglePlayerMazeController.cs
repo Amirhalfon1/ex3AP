@@ -27,8 +27,14 @@ namespace ex3.Controllers
             return mazeToRet;
         }
 
-        // POST: api/SinglePlayerMaze
-        public void Post([FromBody]string value)
+        [HttpGet]
+        public Dictionary<string,Maze> GetMazes()
+        {
+            return spMazeManager.GetMazes();
+        }
+
+            // POST: api/SinglePlayerMaze
+            public void Post([FromBody]string value)
         {
         }
 

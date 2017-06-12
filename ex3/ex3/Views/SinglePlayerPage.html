@@ -10,12 +10,13 @@
     <script src="../Scripts/jquery-3.1.1.js"></script>
     <script>
         console.log('blablabla');
-        var productsUrl = "../api/SinglePlayerMaze/?name=BLA&rows=5&cols=5";
+        var productsUrl = "../api/SinglePlayerMaze";
         console.log('AFTER');
-        $.getJSON(productsUrl, function (data) {
-            Console.log(data);
-            $("#bla").append(data.Name);
+        $.getJSON(productsUrl).done(function (data) {
+            data.forEach(function (product) {
+                $("#bla").append(product.Name);
             });
+        });
     </script>
 </body>
 </html>

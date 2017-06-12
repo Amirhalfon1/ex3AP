@@ -31,5 +31,13 @@ namespace ex3.Models
             singleplayerMazesDictionary.Add(name , maze);
             return maze;
         }
+
+        public Dictionary<string, Maze> GetMazes()
+        {
+            Maze maze = new Maze(10, 10);
+            maze.Name = "BLABLABLA";
+            singleplayerMazesDictionary.Add("MazeNAMEEE", maze);
+            return singleplayerMazesDictionary;
+        }
     }
 }
