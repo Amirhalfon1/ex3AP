@@ -24,12 +24,12 @@ namespace ex3.Models
         /// <param name="rows">The rows.</param>
         /// <param name="cols">The cols.</param>
         /// <returns>maze</returns>
-        public Maze GenerateMaze(string name, int rows, int cols)
+        public string GenerateMaze(string name, int rows, int cols)
         {
             Maze maze = mazeGenerator.Generate(rows, cols);
             maze.Name = name;
             singleplayerMazesDictionary.Add(name , maze);
-            return maze;
+            return maze.ToJSON();
         }
 
         public Dictionary<string, Maze> GetMazes()
