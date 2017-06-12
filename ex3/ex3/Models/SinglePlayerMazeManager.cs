@@ -10,9 +10,11 @@ namespace ex3.Models
     public class SinglePlayerMazeManager
     {
         DFSMazeGenerator mazeGenerator;
+        private Dictionary<string, Maze> singleplayerMazesDictionary;
 
         public SinglePlayerMazeManager()
         {
+            singleplayerMazesDictionary = new Dictionary<string, Maze>();
             mazeGenerator = new DFSMazeGenerator();
         }
         /// <summary>
@@ -25,7 +27,16 @@ namespace ex3.Models
         public Maze GenerateMaze(string name, int rows, int cols)
         {
             Maze maze = mazeGenerator.Generate(rows, cols);
+            maze.Name = name;
+            singleplayerMazesDictionary.Add(name , maze);
             return maze;
         }
+
+        
+        public Dictionary<string, Maze> getDic()
+        {
+            return singleplayerMazesDictionary;
+        }
+
     }
 }

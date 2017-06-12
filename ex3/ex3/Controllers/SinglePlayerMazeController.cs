@@ -4,25 +4,27 @@ using System.Linq;
 using System.Net;
 using System.Net.Http;
 using System.Web.Http;
+using MazeLib;
 using ex3.Models;
 
 namespace ex3.Controllers
 {
     public class SinglePlayerMazeController : ApiController
     {
-        SinglePlayerMazeManager 
+        SinglePlayerMazeManager spMazeManager = new SinglePlayerMazeManager();
 
-        // GET: api/SinglePlayerMaze
-        public IEnumerable<string> Get()
-        {
-            return new string[] { "value1", "value2" };
-        }
+        //// GET: api/SinglePlayerMaze
+        //public IEnumerable<string> Get()
+        //{
+        //    return new string[] { "value1", "value2" };
+        //}
 
         // GET: api/SinglePlayerMaze/5
         [HttpGet]
-        public string GenerateMaze(string name, int rows , int cols)
+        public Maze GenerateMaze(string name, int rows , int cols)
         {
-            return "value";
+           Maze mazeToRet = spMazeManager.GenerateMaze(name, rows, cols);
+            return mazeToRet;
         }
 
         // POST: api/SinglePlayerMaze
