@@ -39,5 +39,6 @@ namespace ex3.Models
             singleplayerMazesDictionary.Add("MazeNAMEEE", maze);
             return singleplayerMazesDictionary;
         }
+        
     }
 }
