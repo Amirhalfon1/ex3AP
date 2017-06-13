@@ -42,22 +42,21 @@
         <script src="../Scripts/jQuery.mazePlugin.js"></script>
         <script>
             console.log('blablabla');
-            var productsUrl = "../api/SinglePlayerMaze/Amir/2/2";
+            //var productsUrl = "../api/SinglePlayerMaze/Amir/2/2";
 
             //$.getJSON(productsUrl, function (data) {
 
             //    );
-
+            var name = $('#mazeName').val();
+            var rows = $('#rows').val();
+            var cols = $('#cols').val();
             $.ajax({
-                var name = $("#mazeName").val() ;
-                var rows = $("#rows').val();
-                var cols = $("#cols").val();
+                
                 type: "GET",
                 contentType: "application/json; charset=utf-8",
                 dataType: "json",
                 url: "../api/SinglePlayerMaze/" + name + "/" + rows + "/" + cols,
                 success: function (recData) {
-                    //$('#bla').append(recData);
                     var maze = { "Name": recData.Name, "Maze": recData.Maze, "Rows": recData.Rows, "Cols": recData.Cols }
                     $('#bla').append(recData.Maze);
                     $('#mazeCanvas').mazePlugin(maze);
