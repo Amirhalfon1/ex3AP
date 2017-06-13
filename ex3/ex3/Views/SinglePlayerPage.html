@@ -55,13 +55,12 @@
                 type: "GET",
                 contentType: "application/json; charset=utf-8",
                 dataType: "json",
-                url: "../api/SinglePlayerMaze/" + $("#mazeName").val() + "/" + $("#rows').val() + "/" + $("#cols").val(),
+                url: "../api/SinglePlayerMaze/" + name + "/" + rows + "/" + cols,
                 success: function (recData) {
                     //$('#bla').append(recData);
                     var maze = { "Name": recData.Name, "Maze": recData.Maze, "Rows": recData.Rows, "Cols": recData.Cols }
                     $('#bla').append(recData.Maze);
                     $('#mazeCanvas').mazePlugin(maze);
-                    //console.log(recData.Name);
                     alert('Success');
                 },
                 error: function (result) { alert('error ' + result[0]); }
