@@ -6,6 +6,7 @@ using System.Net.Http;
 using System.Web.Http;
 using MazeLib;
 using ex3.Models;
+using Newtonsoft.Json.Linq;
 
 namespace ex3.Controllers
 {
@@ -21,14 +22,24 @@ namespace ex3.Controllers
 
         // GET: api/SinglePlayerMaze/5
         [HttpGet]
-        public Maze GenerateMaze(string name, int rows , int cols)
+        [Route("api/SinglePlayerMaze/{name}/{rows}/{cols}")]
+        public JObject GenerateMaze(string name, int rows , int cols)
         {
-           Maze mazeToRet = spMazeManager.GenerateMaze(name, rows, cols);
-            return mazeToRet;
+            //Maze mazeToRet = spMazeManager.GenerateMaze(name, rows, cols);
+            // return mazeToRet;
+            Maze maze = Maze.FromJSON(spMazeManager.GenerateMaze(name, rows, cols));
+            JObject obj = JObject.Parse(maze.ToJSON());
+            return obj;
         }
 
-        // POST: api/SinglePlayerMaze
-        public void Post([FromBody]string value)
+        [HttpGet]
+        public Dictionary<string,Maze> GetMazes()
+        {
+            return spMazeManager.GetMazes();
+        }
+
+            // POST: api/SinglePlayerMaze
+            public void Post([FromBody]string value)
         {
         }
 
