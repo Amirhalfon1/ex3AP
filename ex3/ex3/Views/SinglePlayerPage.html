@@ -11,7 +11,7 @@
         <p id="bla"></p>
         
         <div class="container body-content">
-            <h2>Single Player Game</h2><hr />
+            <h2>Single Player Game111111</h2><hr />
             <div class="col-sm-4 form-horizontal">
                 <div class="form-group">
                     <label for="mazeName" class="col-sm-2 control-label">Name</label>
@@ -29,7 +29,7 @@
                     <label for="cols" class="col-sm-2 control-label">Cols</label>
                     <div class="col-sm-10">
                         <input type="text" class="form-control" id="cols" />
-                        <button id="btn1" width="1000" height="1000"></button>
+                        <button type="submit" id="btn1" class="btn btn-default">Start New Game</button>
                     </div>
                 </div>
             </div>
@@ -51,14 +51,13 @@
                 var rows = $('#rows').val();
                 var cols = $('#cols').val();
                 $.ajax({
-
+                    console.log("valavlavlavfadv");
                     type: "GET",
                     contentType: "application/json; charset=utf-8",
                     dataType: "json",
                     url: "../api/SinglePlayerMaze/" + name + "/" + rows + "/" + cols,
                     success: function (recData) {
                         var maze = { "Name": recData.Name, "Maze": recData.Maze, "Rows": recData.Rows, "Cols": recData.Cols }
-                        $('#bla').append(recData.Maze);
                         $('#mazeCanvas').mazePlugin(maze);
                         alert('Success');
                     },
