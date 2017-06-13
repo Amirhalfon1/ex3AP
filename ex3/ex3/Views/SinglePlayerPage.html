@@ -29,6 +29,7 @@
                     <label for="cols" class="col-sm-2 control-label">Cols</label>
                     <div class="col-sm-10">
                         <input type="text" class="form-control" id="cols" />
+                        <button id="btn1" width="1000" height="1000"></button>
                     </div>
                 </div>
             </div>
@@ -36,35 +37,36 @@
                 <canvas id="mazeCanvas" width="300" height="300" style="border:2px black
                                 solid"></canvas>
             </div>
+            <!--<div class="col-sm-8 text-center">
+                
+            </div>-->
         </div>
 
         <script src="../Scripts/jquery-3.1.1.js"></script>
         <script src="../Scripts/jQuery.mazePlugin.js"></script>
         <script>
-            console.log('blablabla');
-            var productsUrl = "../api/SinglePlayerMaze/Amir/2/2";
+            console.log("amir");
+            $("#btn1").click(function () {
+                var name = $('#mazeName').val();
+                var rows = $('#rows').val();
+                var cols = $('#cols').val();
+                $.ajax({
 
-            //$.getJSON(productsUrl, function (data) {
-
-            //    );
-
-            $.ajax({
-                var name = $("#mazeName").val();
-                var rows = $("#rows').val();
-                var cols = $("#cols").val();
-                type: "GET",
-                contentType: "application/json; charset=utf-8",
-                dataType: "json",
-                url: "../api/SinglePlayerMaze/" + name + "/" + rows + "/" + cols,
-                success: function (recData) {
-                    //$('#bla').append(recData);
-                    var maze = { "Name": recData.Name, "Maze": recData.Maze, "Rows": recData.Rows, "Cols": recData.Cols }
-                    $('#bla').append(recData.Maze);
-                    $('#mazeCanvas').mazePlugin(maze);
-                    alert('Success');
-                },
-                error: function (result) { alert('error ' + result[0]); }
+                    type: "GET",
+                    contentType: "application/json; charset=utf-8",
+                    dataType: "json",
+                    url: "../api/SinglePlayerMaze/" + name + "/" + rows + "/" + cols,
+                    success: function (recData) {
+                        var maze = { "Name": recData.Name, "Maze": recData.Maze, "Rows": recData.Rows, "Cols": recData.Cols }
+                        $('#bla').append(recData.Maze);
+                        $('#mazeCanvas').mazePlugin(maze);
+                        alert('Success');
+                    },
+                    error: function (result) { alert('error ' + result[0]); }
+                });
             });
+
+            
         </script>
         </form>
 </body>
