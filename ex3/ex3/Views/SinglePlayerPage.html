@@ -45,7 +45,7 @@
     </style>
 </head>
 
-<body>
+<body onkeydown="move(event)">
 
     <ul>
         <li><a class="active" href="#home">Single player</a></li>
@@ -83,7 +83,7 @@
                     </div>
                 </div>
                 <div class="col-sm-8 text-center">
-                    <canvas id="mazeCanvas" width="300" height="300" style="border:2px black
+                    <canvas id="mazeCanvas" width="400" height="400" style="border:2px black
                                 solid"></canvas>
                     <img id="playerImage" src="resources/player.png" hidden="hidden" />
                     <img id="goalImage" src="resources/goal.png" hidden="hidden" />
