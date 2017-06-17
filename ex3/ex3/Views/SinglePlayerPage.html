@@ -57,7 +57,7 @@
 
     <div style="padding:20px;margin-top:30px;background-color:#1abc9c;height:1500px;">
 
-        <form>
+        <!--<form>-->
 
             <div class="container body-content">
                 <h2>Single Player Game</h2><hr />
@@ -78,46 +78,41 @@
                         <label for="cols" class="col-sm-2 control-label">Cols</label>
                         <div class="col-sm-10">
                             <input type="text" class="form-control" id="cols" />
-                            <button id="btn1" width="1000" height="1000"></button>
+                            <button type="submit" id="btn1" class="btn btn-default">Start New Game</button>
                         </div>
                     </div>
                 </div>
                 <div class="col-sm-8 text-center">
                     <canvas id="mazeCanvas" width="300" height="300" style="border:2px black
                                 solid"></canvas>
+                    <img id="playerImage" src="resources/player.png" hidden="hidden" />
+                    <img id="goalImage" src="resources/goal.png" hidden="hidden" />
                 </div>
-                <!--<div class="col-sm-8 text-center">
 
-                </div>-->
             </div>
     </div>
 
     <script src="../Scripts/jquery-3.1.1.js"></script>
     <script src="../Scripts/jQuery.mazePlugin.js"></script>
     <script>
-                console.log("amir");
-                $("#btn1").click(function () {
+
+
+                $("#btn1").on("click", function () {
                     var name = $('#mazeName').val();
+                    console.log(name);
                     var rows = $('#rows').val();
                     var cols = $('#cols').val();
-                    $.ajax({
-
-                        type: "GET",
-                        contentType: "application/json; charset=utf-8",
-                        dataType: "json",
-                        url: "../api/SinglePlayerMaze/" + name + "/" + rows + "/" + cols,
-                        success: function (recData) {
-                            var maze = { "Name": recData.Name, "Maze": recData.Maze, "Rows": recData.Rows, "Cols": recData.Cols }
-                            $('#bla').append(recData.Maze);
-                            $('#mazeCanvas').mazePlugin(maze);
-                            alert('Success');
-                        },
-                        error: function (result) { alert('error ' + result[0]); }
+                    url = "../api/SinglePlayerMaze/" + name + "/" + rows + "/" + cols;
+                    $.getJSON(url).done(function (recData) {                        var maze = { "Name": recData.Name, "Maze": recData.Maze, "Rows": recData.Rows, "Cols": recData.Cols, "Start": recData.Start, "Goal": recData.End }
+                         $('#bla').append(recData.Maze);
+                       $('#mazeCanvas').mazePlugin(maze);
+                           alert('Success');
+                    }).fail(function (jqXHR, textStatus, err) {                        alert('error ');
                     });
                 });
 
 
     </script>
-    </form>
+    <!--</form>-->
 </body>
 </html>

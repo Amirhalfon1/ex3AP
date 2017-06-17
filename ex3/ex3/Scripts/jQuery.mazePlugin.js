@@ -2,6 +2,8 @@
     $.fn.mazePlugin = function (maze) {
         console.log(maze);
         var myCanvas = document.getElementById("mazeCanvas");
+        var player = document.getElementById("playerImage");
+        var goal = document.getElementById("goalImage");
         var offset = -1;
         var context = mazeCanvas.getContext("2d"); 
         var rows = maze.Rows;
@@ -17,6 +19,10 @@
                 
             }
         }
+        context.drawImage(player, maze.Start.Col * cellWidth, maze.Start.Row * cellHeight,
+            cellWidth, cellHeight);
+        context.drawImage(goal, maze.Goal.Col * cellWidth, maze.Goal.Row * cellHeight,
+            cellWidth, cellHeight);
         return this;
     }
 
