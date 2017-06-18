@@ -76,7 +76,9 @@ var rows, cols;
     }
 
 
-})(jQuery);function move(e) {
+})(jQuery);
+
+function move(e) {
     var directionKey = false;
     var keyPressed;
     keyPressed = e.keyCode;
