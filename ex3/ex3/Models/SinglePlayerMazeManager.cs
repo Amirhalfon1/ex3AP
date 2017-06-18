@@ -16,7 +16,7 @@ namespace ex3.Models
 
 
 
-        public SinglePlayerMazeManager()
+        private SinglePlayerMazeManager()
         {
             model = new MazeModel.MazeModel();
         }
