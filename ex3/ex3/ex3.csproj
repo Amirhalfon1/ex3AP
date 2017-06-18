@@ -136,9 +136,9 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201706181531444_Email.cs" />
-    <Compile Include="Migrations\201706181531444_Email.Designer.cs">
-      <DependentUpon>201706181531444_Email.cs</DependentUpon>
+    <Compile Include="Migrations\201706181306486_Initial.cs" />
+    <Compile Include="Migrations\201706181306486_Initial.Designer.cs">
+      <DependentUpon>201706181306486_Initial.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Ex3AppContext.cs" />
@@ -170,8 +170,8 @@
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201706181531444_Email.resx">
-      <DependentUpon>201706181531444_Email.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201706181306486_Initial.resx">
+      <DependentUpon>201706181306486_Initial.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

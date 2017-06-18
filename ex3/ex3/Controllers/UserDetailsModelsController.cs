@@ -23,18 +23,18 @@ namespace ex3.Controllers
             return db.UserDetailsModels;
         }
 
-        // GET: api/UserDetailsModels/5
-        [ResponseType(typeof(UserDetailsModel))]
-        public IHttpActionResult GetUserDetailsModel(int id)
-        {
-            UserDetailsModel userDetailsModel = db.UserDetailsModels.Find(id);
-            if (userDetailsModel == null)
-            {
-                return NotFound();
-            }
+        //// GET: api/UserDetailsModels/5
+        //[ResponseType(typeof(UserDetailsModel))]
+        //public IHttpActionResult GetUserDetailsModel(int id)
+        //{
+        //    UserDetailsModel userDetailsModel = db.UserDetailsModels.Find(id);
+        //    if (userDetailsModel == null)
+        //    {
+        //        return NotFound();
+        //    }
 
-            return Ok(userDetailsModel);
-        }
+        //    return Ok(userDetailsModel);
+        //}
 
         // PUT: api/UserDetailsModels/5
         [ResponseType(typeof(void))]

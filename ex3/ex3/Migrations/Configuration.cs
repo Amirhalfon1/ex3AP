@@ -4,6 +4,7 @@ namespace ex3.Migrations
     using System.Data.Entity;
     using System.Data.Entity.Migrations;
     using System.Linq;
+    
 
     internal sealed class Configuration : DbMigrationsConfiguration<ex3.Models.Ex3AppContext>
     {
@@ -26,6 +27,9 @@ namespace ex3.Migrations
             //      new Person { FullName = "Rowan Miller" }
             //    );
             //
+            context.UserDetailsModels.AddOrUpdate(
+                new Models.UserDetailsModel { Name = "Amir", Password= "12345"}
+                );
         }
     }
 }
