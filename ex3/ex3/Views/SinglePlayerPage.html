@@ -140,10 +140,13 @@
                     var name = maze.Name;
                     var algo = $('#algoSelect').val();
                     url = "../api/SinglePlayerMaze/Solve/" + name + "/" + algo;
-                    $.getJSON(url).done(function (solveFeedback) {                        console.log(solveFeedback["Solution"]);                        solution = { "Solution": solveFeedback["Solution"] };
+                    $.getJSON(url).done(function (solveFeedback) {
+                        console.log(solveFeedback["Solution"]);
+                        solution = { "Solution": solveFeedback["Solution"] };
                         $('#mazeCanvas').solveMaze(solution);
 
-                    }).fail(function (jqXHR, textStatus, err) {                        alert('error ');
+                    }).fail(function (jqXHR, textStatus, err) {
+                        alert('error ');
                     });
 
                 });
