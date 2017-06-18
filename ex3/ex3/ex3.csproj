@@ -138,7 +138,7 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
-    <Compile Include="Models\ex3AppContext.cs" />
+    <Compile Include="Models\Ex3AppContext.cs" />
     <Compile Include="Models\SinglePlayerMazeManager.cs" />
     <Compile Include="Models\UserDetailsModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

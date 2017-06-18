@@ -14,7 +14,7 @@ namespace ex3.Controllers
 {
     public class UserDetailsModelsController : ApiController
     {
-        private ex3AppContext db = new ex3AppContext();
+        private Ex3AppContext db = new Ex3AppContext();
 
         // GET: api/UserDetailsModels
         public IQueryable<UserDetailsModel> GetUserDetailsModels()
