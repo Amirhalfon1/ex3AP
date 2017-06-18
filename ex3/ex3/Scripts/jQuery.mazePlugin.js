@@ -60,7 +60,7 @@ var rows, cols;
                 break;
         }
         if ((currentPos.Row == mazeObject.Goal.Row) && (currentPos.Col == mazeObject.Goal.Col)) {
-            alert("Tou Won!");
+            alert("You Won!");
         }
     }
 }

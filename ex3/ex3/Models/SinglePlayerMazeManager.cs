@@ -4,19 +4,32 @@ using System.Linq;
 using System.Web;
 using MazeGeneratorLib;
 using MazeLib;
+using SearchAlgorithmsLib;
+using MazeModel;
 
 namespace ex3.Models
 {
     public class SinglePlayerMazeManager
     {
-        DFSMazeGenerator mazeGenerator;
-        private Dictionary<string, Maze> singleplayerMazesDictionary;
+        private static SinglePlayerMazeManager singleInstance = null;
+        IModel model;
+
+
 
         public SinglePlayerMazeManager()
         {
-            singleplayerMazesDictionary = new Dictionary<string, Maze>();
-            mazeGenerator = new DFSMazeGenerator();
+            model = new MazeModel.MazeModel();
         }
+
+        public static SinglePlayerMazeManager GetInstance()
+        {
+            if (singleInstance == null)
+            {
+                singleInstance = new SinglePlayerMazeManager();
+            }
+            return singleInstance;
+        }
+
         /// <summary>
         /// Generates the maze.
         /// </summary>
@@ -26,19 +39,24 @@ namespace ex3.Models
         /// <returns>maze</returns>
         public string GenerateMaze(string name, int rows, int cols)
         {
-            Maze maze = mazeGenerator.Generate(rows, cols);
-            maze.Name = name;
-            singleplayerMazesDictionary.Add(name , maze);
+            Maze maze = model.GenerateMaze(name, rows, cols);
             return maze.ToJSON();
         }
 
-        public Dictionary<string, Maze> GetMazes()
+
+        /// <summary>
+        /// Solves the specified name.
+        /// </summary>
+        /// <param name="name">The name.</param>
+        /// <param name="algo">The algo.</param>
+        /// <returns>the solution by the desired algo</returns>
+        public string SolveMaze(string name, int algorithm)
         {
-            Maze maze = new Maze(10, 10);
-            maze.Name = "BLABLABLA";
-            singleplayerMazesDictionary.Add("MazeNAMEEE", maze);
-            return singleplayerMazesDictionary;
+            return model.Solve(name, algorithm);
         }
-        
+
+
+
+
     }
 }

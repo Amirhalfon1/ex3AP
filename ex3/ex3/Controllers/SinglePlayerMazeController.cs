@@ -12,7 +12,8 @@ namespace ex3.Controllers
 {
     public class SinglePlayerMazeController : ApiController
     {
-        SinglePlayerMazeManager spMazeManager = new SinglePlayerMazeManager();
+        //SinglePlayerMazeManager spMazeManager = new SinglePlayerMazeManager();
+        SinglePlayerMazeManager spMazeManager = SinglePlayerMazeManager.GetInstance();
 
         //// GET: api/SinglePlayerMaze
         //public IEnumerable<string> Get()
@@ -33,24 +34,25 @@ namespace ex3.Controllers
         }
 
         [HttpGet]
-        public Dictionary<string,Maze> GetMazes()
+        [Route("api/Solve/{name}/{algorithm}")]
+        public JObject Solve(string name, int algorithm)
         {
-            return spMazeManager.GetMazes();
+            //model.GenerateMaze(name, 12, 12);
+            string solution = spMazeManager.SolveMaze(name, algorithm);
+            JObject obj = JObject.Parse(solution);
+            return obj;
         }
 
-            // POST: api/SinglePlayerMaze
-            public void Post([FromBody]string value)
-        {
-        }
 
-        // PUT: api/SinglePlayerMaze/5
-        public void Put(int id, [FromBody]string value)
-        {
-        }
 
-        // DELETE: api/SinglePlayerMaze/5
-        public void Delete(int id)
-        {
-        }
+        //// PUT: api/SinglePlayerMaze/5
+        //public void Put(int id, [FromBody]string value)
+        //{
+        //}
+
+        //// DELETE: api/SinglePlayerMaze/5
+        //public void Delete(int id)
+        //{
+        //}
     }
 }
