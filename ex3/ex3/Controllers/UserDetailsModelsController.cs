@@ -9,6 +9,7 @@ using System.Net.Http;
 using System.Web.Http;
 using System.Web.Http.Description;
 using ex3.Models;
+using System.Threading.Tasks;
 
 namespace ex3.Controllers
 {
@@ -70,20 +71,36 @@ namespace ex3.Controllers
             return StatusCode(HttpStatusCode.NoContent);
         }
 
-        // POST: api/UserDetailsModels
+        // POST: api/UserDatabases
         [ResponseType(typeof(UserDetailsModel))]
-        public IHttpActionResult PostUserDetailsModel(UserDetailsModel userDetailsModel)
+        public async Task<IHttpActionResult> PostUserDatabase(UserDetailsModel userDatabase)
         {
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
             }
 
-            db.UserDetailsModels.Add(userDetailsModel);
-            db.SaveChanges();
+            db.UserDetailsModels.Add(userDatabase);
+            await db.SaveChangesAsync();
 
-            return CreatedAtRoute("DefaultApi", new { id = userDetailsModel.Id }, userDetailsModel);
+            return CreatedAtRoute("DefaultApi", new { id = userDatabase.Id }, userDatabase);
         }
+
+        //// POST: api/UserDetailsModels
+        //[ResponseType(typeof(UserDetailsModel))]
+        //[Route("api/UserDetailsModels/{name}/{email}/{password}")]
+        //public IHttpActionResult PostUserDetailsModel(UserDetailsModel userDetailsModel)
+        //{
+        //    if (!ModelState.IsValid)
+        //    {
+        //        return BadRequest(ModelState);
+        //    }
+
+        //    db.UserDetailsModels.Add(userDetailsModel);
+        //    db.SaveChanges();
+
+        //    return CreatedAtRoute("DefaultApi", new { id = userDetailsModel.Id }, userDetailsModel);
+        //}
 
         // DELETE: api/UserDetailsModels/5
         [ResponseType(typeof(UserDetailsModel))]

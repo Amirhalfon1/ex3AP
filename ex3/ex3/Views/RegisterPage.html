@@ -28,11 +28,39 @@
 
 
             <div class="clearfix">
-                <button type="submit" class="signupbtn" onclick="store()" style="margin-left: 500px">Sign Up</button>
+                <button id ="signupBtn" onclick="addUser()" type="submit" class="signupbtn" style="margin-left: 500px">Sign Up</button>
             </div>
 
         </div>
-        <script src="../scripts/jquery-3.1.1.js"></script>
+        <script src="../Scripts/jquery-3.1.1.js"></script>
+        <script src="../Scripts/jQuery.mazePlugin.js"></script>
+        <script>
+
+            function addUser() {
+                var usersUri = "../api/UserDetailsModels/";
+                console.log($("#USERNAME").val());
+                console.log($("#EMAIL").val());
+                console.log($("#password").val());
+                var user = {
+                    Name: $("#USERNAME").val(),
+                    Email: $("#EMAIL").val(),
+                    Password: $("#password").val()
+                    //Wins: 0,
+                    //loses: 0
+                };
+                console.log(user);
+                //$.post(usersUri, user).done(function () {
+                    //var userName = document.getElementById("USERNAME");
+                    //sessionStorage.setItem("USERNAME", userName.value);
+                    //alert("user added to database and session");
+                    //window.location.replace("MainWindow.html");
+                    //location.reload();
+                  //  alert('user added');
+                    // window.location.replace("MainWindow.html");
+                //});
+            }
+
+        </script>
     </form>
 </body>
 </html>
