@@ -34,34 +34,83 @@ var rows, cols;
     }
 
 
+    $.fn.solveMaze = function (solution) {
+        currentPos.Row = mazeObject.Start.Row;
+        currentPos.Col = mazeObject.Start.Col;
+        var frameActivator = window.setInterval(frame, 600);
+        var i = 0;
+        function frame() {
+
+             if(i < solution.Solution.length){
+                switch (solution.Solution.charAt(i)) {
+                    //left
+                    case '0':
+                        moveLeft();
+                        break;
+
+                    //right
+                    case '1':
+                        moveRight();
+                        break;
+
+                    //up
+                    case '2':
+                        moveUp();
+                        break;
+
+                    //down
+                    case '3':
+                        moveDown();
+                        break;
+                 }
+                i++;
+            }
+             if (i == solution.Solution.length) {
+                 alert("Solve finished !");
+                 clearInterval(frameActivator);
+             }
+            
+        }
+
+        return this;
+    }
+
+
 })(jQuery);function move(e) {
-    
+    var directionKey = false;
     var keyPressed;
     keyPressed = e.keyCode;
     if (window.event) {
         switch (keyPressed) {
             case 37:
+                directionKey = true;
                 e.preventDefault();
                 moveLeft();
                 break;
             case 38:
+                directionKey = true;
                 e.preventDefault();
                 moveUp();
                 break;
             case 39:
+                directionKey = true;
                 e.preventDefault();
                 moveRight();
                 break;
             case 40:
+                directionKey = true;
                 e.preventDefault();
                 moveDown();
                 break;
             default:
                 break;
         }
-        if ((currentPos.Row == mazeObject.Goal.Row) && (currentPos.Col == mazeObject.Goal.Col)) {
-            alert("You Won!");
+        if (directionKey) {
+            if ((currentPos.Row == mazeObject.Goal.Row) && (currentPos.Col == mazeObject.Goal.Col)) {
+                alert("You Won!");
+            }
         }
+
     }
 }
 

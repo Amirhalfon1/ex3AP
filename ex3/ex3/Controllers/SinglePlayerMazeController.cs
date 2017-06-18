@@ -34,7 +34,7 @@ namespace ex3.Controllers
         }
 
         [HttpGet]
-        [Route("api/Solve/{name}/{algorithm}")]
+        [Route("api/SinglePlayerMaze/Solve/{name}/{algorithm}")]
         public JObject Solve(string name, int algorithm)
         {
             //model.GenerateMaze(name, 12, 12);
