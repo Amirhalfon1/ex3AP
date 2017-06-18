@@ -5,14 +5,14 @@ namespace ex3.Migrations
     using System.Data.Entity.Migrations;
     using System.Linq;
 
-    internal sealed class Configuration : DbMigrationsConfiguration<ex3.Models.ex3AppContext>
+    internal sealed class Configuration : DbMigrationsConfiguration<ex3.Models.Ex3AppContext>
     {
         public Configuration()
         {
             AutomaticMigrationsEnabled = false;
         }
 
-        protected override void Seed(ex3.Models.ex3AppContext context)
+        protected override void Seed(ex3.Models.Ex3AppContext context)
         {
             //  This method will be called after migrating to the latest version.
 

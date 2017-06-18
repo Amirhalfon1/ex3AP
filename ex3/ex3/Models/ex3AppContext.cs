@@ -6,7 +6,7 @@ using System.Web;
 
 namespace ex3.Models
 {
-    public class ex3AppContext : DbContext
+    public class Ex3AppContext : DbContext
     {
         // You can add custom code to this file. Changes will not be overwritten.
         // 
@@ -15,7 +15,7 @@ namespace ex3.Models
         // For more information refer to the documentation:
         // http://msdn.microsoft.com/en-us/data/jj591621.aspx
     
-        public ex3AppContext() : base("name=ex3AppContext")
+        public Ex3AppContext() : base("name=Ex3AppContext")
         {
         }
 
