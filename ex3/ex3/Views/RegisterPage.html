@@ -7,7 +7,7 @@
 <body>
     <h2>Signup Form</h2>
 
-    <form action="../Views/MainWindow.html" style="border:1px solid #ccc" class="pure-form">
+    <form style="border:1px solid #ccc" class="pure-form">
         <div class="container">
             <label><b>User Name</b></label>
             <input type="text" placeholder="Enter User Name" id="USERNAME" name="userName" required>
@@ -49,15 +49,15 @@
                     //loses: 0
                 };
                 console.log(user);
-                //$.post(usersUri, user).done(function () {
-                    //var userName = document.getElementById("USERNAME");
-                    //sessionStorage.setItem("USERNAME", userName.value);
-                    //alert("user added to database and session");
-                    //window.location.replace("MainWindow.html");
-                    //location.reload();
-                  //  alert('user added');
-                    // window.location.replace("MainWindow.html");
-                //});
+                $.post(usersUri, user).done(function () {
+                    var userName = document.getElementById("USERNAME");
+                    sessionStorage.setItem("USERNAME", userName.value);
+                    alert("user added to database and session");
+                    window.location.replace("MainWindow.html");
+                    location.reload();
+                    alert('user added');
+                     window.location.replace("MainWindow.html");
+                });
             }
 
         </script>
