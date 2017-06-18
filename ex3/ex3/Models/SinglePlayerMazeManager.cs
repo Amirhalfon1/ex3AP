@@ -55,8 +55,5 @@ namespace ex3.Models
             return model.Solve(name, algorithm);
         }
 
-
-
-
     }
 }
