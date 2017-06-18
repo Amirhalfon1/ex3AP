@@ -56,14 +56,14 @@
       <HintPath>..\..\..\ex1\ex1AdvancedProgramming\ex1AdvancedProgramming\AP2_EX2\ex2AP\SearchAlgorithmsLib\bin\Debug\MazeGeneratorLib.dll</HintPath>
     </Reference>
     <Reference Include="MazeLib">
-      <HintPath>..\..\..\ex1\ex1AdvancedProgramming\ex1AdvancedProgramming\AP2_EX2\ex2AP\SearchAlgorithmsLib\bin\Debug\MazeLib.dll</HintPath>
+      <HintPath>..\..\..\..\..\MazeLib.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.CodeDom.Providers.DotNetCompilerPlatform, Version=1.0.3.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.1.0.3\lib\net45\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="Newtonsoft.Json, Version=10.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
-      <HintPath>..\..\..\ex1\ex1AdvancedProgramming\ex1AdvancedProgramming\AP2_EX2\ex2AP\SearchAlgorithmsLib\bin\Debug\Newtonsoft.Json.dll</HintPath>
+      <HintPath>..\packages\Newtonsoft.Json.10.0.3\lib\net45\Newtonsoft.Json.dll</HintPath>
     </Reference>
     <Reference Include="Priority Queue, Version=4.1.1.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\..\..\ex1\ex1AdvancedProgramming\ex1AdvancedProgramming\AP2_EX2\ex2AP\SearchAlgorithmsLib\bin\Debug\Priority Queue.dll</HintPath>
@@ -133,13 +133,14 @@
   <ItemGroup>
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Controllers\SinglePlayerMazeController.cs" />
-    <Compile Include="Controllers\UserDetailsController.cs" />
+    <Compile Include="Controllers\UserDetailsModelsController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Models\ex3Context.cs" />
+    <Compile Include="Migrations\Configuration.cs" />
+    <Compile Include="Models\ex3AppContext.cs" />
     <Compile Include="Models\SinglePlayerMazeManager.cs" />
-    <Compile Include="Models\UserDetails.cs" />
+    <Compile Include="Models\UserDetailsModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
