@@ -1,13 +1,13 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 15
-VisualStudioVersion = 15.0.26403.0
+# Visual Studio 14
+VisualStudioVersion = 14.0.23107.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ex3", "ex3\ex3.csproj", "{5CFAAF35-E696-4526-83D0-3656EA53ACD1}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MazeModel", "MazeModel\MazeModel.csproj", "{0845BCB7-CCE0-4436-87A7-D86CA7344EA8}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SearchAlgorithmsLib", "..\..\..\ex2\SearchAlgorithmsLib\SearchAlgorithmsLib.csproj", "{60DA5735-6A2C-4CD5-A488-747324CF3125}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SearchAlgorithmsLib", "..\..\ex1\ex1AdvancedProgramming\ex1AdvancedProgramming\AP2_EX2\ex2AP\SearchAlgorithmsLib\SearchAlgorithmsLib.csproj", "{60DA5735-6A2C-4CD5-A488-747324CF3125}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

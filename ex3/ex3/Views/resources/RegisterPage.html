@@ -1,0 +1,38 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <title></title>
+	<meta charset="utf-8" />
+</head>
+<body>
+    <h2>Signup Form</h2>
+
+    <form action="../Views/MainWindow.html" style="border:1px solid #ccc" class="pure-form">
+        <div class="container">
+            <label><b>User Name</b></label>
+            <input type="text" placeholder="Enter User Name" id="USERNAME" name="userName" required>
+
+            <label><b>Email</b></label>
+            <input type="email" placeholder="Enter Email" id="EMAIL" name="email" required>
+
+            <!--<label><b>Password</b></label>
+            <input type="password" placeholder="Enter Password" id="PASSWORD" name="psw" required>
+
+            <label><b>Repeat Password</b></label>
+            <input type="password" placeholder="Repeat Password" id="REPEATPASSWORD" name="psw-repeat" required>-->
+
+            <label><b>Password</b></label>
+            <input type="password" placeholder="Password" id="password" required>
+            <label><b>Repeat Password</b></label>
+            <input type="password" placeholder="Confirm Password" id="confirm_password" required>
+
+
+            <div class="clearfix">
+                <button type="submit" class="signupbtn" onclick="store()" style="margin-left: 500px">Sign Up</button>
+            </div>
+
+        </div>
+        <script src="../scripts/jquery-3.1.1.js"></script>
+    </form>
+</body>
+</html>

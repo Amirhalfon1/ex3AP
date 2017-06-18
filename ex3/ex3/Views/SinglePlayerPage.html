@@ -114,11 +114,13 @@
                     var rows = $('#rows').val();
                     var cols = $('#cols').val();
                     url = "../api/SinglePlayerMaze/" + name + "/" + rows + "/" + cols;
-                    $.getJSON(url).done(function (mazeFeedback) {                        maze = { "Name": mazeFeedback.Name, "Maze": mazeFeedback.Maze, "Rows": mazeFeedback.Rows, "Cols": mazeFeedback.Cols, "Start": mazeFeedback.Start, "Goal": mazeFeedback.End }
+                    $.getJSON(url).done(function (mazeFeedback) {
+                        maze = { "Name": mazeFeedback.Name, "Maze": mazeFeedback.Maze, "Rows": mazeFeedback.Rows, "Cols": mazeFeedback.Cols, "Start": mazeFeedback.Start, "Goal": mazeFeedback.End }
                         //$('#bla').append(mazeFeedback.Maze);
                        $('#mazeCanvas').mazePlugin(maze);
                            alert('Success');
-                    }).fail(function (jqXHR, textStatus, err) {                        alert('error ');
+                    }).fail(function (jqXHR, textStatus, err) {
+                        alert('error ');
                     });
                 });
 
