@@ -7,6 +7,7 @@ using MazeModel;
 using ex3.Models;
 using MazeLib;
 using Newtonsoft.Json.Linq;
+using Newtonsoft.Json;
 
 namespace ex3
 {
@@ -50,8 +51,15 @@ namespace ex3
 
         }
 
-        public JObject List()
+
+        public string[] List()
         {
+            MultiPlayerModel model = MultiPlayerModel.GetInstance();
+            string[] gamesArray = model.GetListOfGames();
+            return gamesArray;
+            //JObject gamesArray = JObject.Parse(gamesArrayJsonStr);
+            //string[] gamesArray = JsonConvert.DeserializeObject<string[]>(gamesArrayJsonStr);
+            //return gamesArray;
 
         }
 

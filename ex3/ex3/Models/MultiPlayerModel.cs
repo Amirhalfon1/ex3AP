@@ -4,6 +4,7 @@ using System.Linq;
 using System.Web;
 using MazeModel;
 using MazeLib;
+using Newtonsoft.Json;
 
 namespace ex3.Models
 {
@@ -39,6 +40,11 @@ namespace ex3.Models
         public String GetOtherPlayerID(string clientID)
         {
             return model.GetOtherPlayerClient(clientID);
+        }
+
+        public string[] GetListOfGames()
+        {
+            return model.GetListOfGames();
         }
 
     }

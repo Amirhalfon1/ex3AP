@@ -41,6 +41,9 @@ namespace MazeModel
             multiplayerMazesDictionary = new Dictionary<string, Maze>();
             singleplayerMazesDictionary = new Dictionary<string, Maze>();
             gamesLobby = new Dictionary<string, Game>();
+            //Just for check "List" command.//////////////////////////
+            gamesLobby.Add("TESTGAME", new Game("123", new Maze(3,3)));
+            ///////////////////////////////////////////////////
             gamesBeingPlayed = new Dictionary<string, Game>();
             bfsSolver = new BFS<Position>();
             dfsSolver = new DFS<Position>();
@@ -170,6 +173,10 @@ namespace MazeModel
         public string[] GetListOfGames()
         {
             return gamesLobby.Keys.ToArray();
+
+
+
+
         }
 
 
