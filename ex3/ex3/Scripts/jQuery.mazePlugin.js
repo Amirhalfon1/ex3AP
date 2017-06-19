@@ -1,14 +1,15 @@
 ﻿
 (function ($) {
 
-    var myCanvas = document.getElementById("mazeCanvas");
-    var player = document.getElementById("playerImage");
-    var goal = document.getElementById("goalImage");
-    var context = mazeCanvas.getContext("2d");
+    var myCanvas;
+    var player;
+    var goal;
+    var context;
     var mazeObject;
     var currentPos;
     var cellWidth, cellHeight;
     var rows, cols;
+    var notifyOther;
 
     var moveLeft = function () {
         console.log(mazeObject);
@@ -20,6 +21,9 @@
             currentPos.Col = currentPos.Col - 1;
             context.drawImage(player, currentPos.Col * cellWidth, currentPos.Row * cellHeight,
                 cellWidth, cellHeight);
+            if (notifyOther != null) {
+                notifyOther("left");
+            }
         }
     };
     var moveRight = function () {
@@ -31,6 +35,9 @@
             currentPos.Col = currentPos.Col + 1;
             context.drawImage(player, currentPos.Col * cellWidth, currentPos.Row * cellHeight,
                 cellWidth, cellHeight);
+            if (notifyOther != null) {
+                notifyOther("right");
+            }
         }
     };
     var moveUp = function () {
@@ -42,6 +49,9 @@
             currentPos.Row = currentPos.Row - 1;
             context.drawImage(player, currentPos.Col * cellWidth, currentPos.Row * cellHeight,
                 cellWidth, cellHeight);
+            if (notifyOther != null) {
+                notifyOther("up");
+            }
         }
     };
     var moveDown = function () {
@@ -53,6 +63,9 @@
             currentPos.Row = currentPos.Row + 1;
             context.drawImage(player, currentPos.Col * cellWidth, currentPos.Row * cellHeight,
                 cellWidth, cellHeight);
+            if (notifyOther != null) {
+                notifyOther("down");
+            }
         }
     };
     //function to invoke after each move
@@ -96,8 +109,15 @@
 
 
 
-    
-    $.fn.mazePlugin = function (maze, canMove) {
+
+    $.fn.mazePlugin = function (maze, playerImage, exitImage, canMove, notifyOtherPlayer) {
+        if (notifyOtherPlayer != null) {
+            notifyOther = notifyOtherPlayer;
+        }
+        player = playerImage;
+        goal = exitImage;
+        myCanvas = this[0];
+        context = myCanvas.getContext("2d");
         var offset = -1;
         rows = maze.Rows;
         cols = maze.Cols;
@@ -121,52 +141,119 @@
         if (canMove) {
             $("body").keydown(movePlayer);
         }
-        return this;
-    }
+        this.solve = function (solution) {
+            //Turning off the function occured when key event.
+            $("body").off("keydown", movePlayer);
+            currentPos.Row = mazeObject.Start.Row;
+            currentPos.Col = mazeObject.Start.Col;
+            var frameActivator = window.setInterval(frame, 600);
+            var i = 0;
+            function frame() {
 
+                if (i < solution.Solution.length) {
+                    switch (solution.Solution.charAt(i)) {
+                        //left
+                        case '0':
+                            moveLeft();
+                            break;
 
-    $.fn.solveMaze = function (solution) {
-        //Turning off the function occured when key event.
-        $("body").off("keydown", movePlayer);
-        currentPos.Row = mazeObject.Start.Row;
-        currentPos.Col = mazeObject.Start.Col;
-        var frameActivator = window.setInterval(frame, 600);
-        var i = 0;
-        function frame() {
+                        //right
+                        case '1':
+                            moveRight();
+                            break;
 
-             if(i < solution.Solution.length){
-                switch (solution.Solution.charAt(i)) {
-                    //left
-                    case '0':
-                        moveLeft();
-                        break;
+                        //up
+                        case '2':
+                            moveUp();
+                            break;
 
-                    //right
-                    case '1':
-                        moveRight();
-                        break;
+                        //down
+                        case '3':
+                            moveDown();
+                            break;
+                    }
+                    i++;
+                }
+                if (i == solution.Solution.length) {
+                    alert("Solve finished !");
+                    clearInterval(frameActivator);
+                }
 
-                    //up
-                    case '2':
-                        moveUp();
-                        break;
-
-                    //down
-                    case '3':
-                        moveDown();
-                        break;
-                 }
-                i++;
             }
-             if (i == solution.Solution.length) {
-                 alert("Solve finished !");
-                 clearInterval(frameActivator);
-             }
+
             
         }
-
         return this;
     }
+
+
+    $.fn.moveByString = function (direction) {
+
+        switch (direction) {
+            //left
+            case "left":
+                moveLeft();
+                break;
+
+            //right
+            case "right":
+                moveRight();
+                break;
+
+            //up
+            case "up":
+                moveUp();
+                break;
+
+            //down
+            case "down":
+                moveDown();
+                break;
+        }
+    }
+
+    //$.fn.solveMaze = function (solution) {
+    //    //Turning off the function occured when key event.
+    //    $("body").off("keydown", movePlayer);
+    //    currentPos.Row = mazeObject.Start.Row;
+    //    currentPos.Col = mazeObject.Start.Col;
+    //    var frameActivator = window.setInterval(frame, 600);
+    //    var i = 0;
+    //    function frame() {
+
+    //        if (i < solution.Solution.length) {
+    //            switch (solution.Solution.charAt(i)) {
+    //                //left
+    //                case '0':
+    //                    moveLeft();
+    //                    break;
+
+    //                //right
+    //                case '1':
+    //                    moveRight();
+    //                    break;
+
+    //                //up
+    //                case '2':
+    //                    moveUp();
+    //                    break;
+
+    //                //down
+    //                case '3':
+    //                    moveDown();
+    //                    break;
+    //            }
+    //            i++;
+    //        }
+    //        if (i == solution.Solution.length) {
+    //            alert("Solve finished !");
+    //            clearInterval(frameActivator);
+    //        }
+
+    //    }
+
+    //    return this;
+    //}
 
 
 })(jQuery);

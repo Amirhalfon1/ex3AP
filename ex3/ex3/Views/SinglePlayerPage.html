@@ -44,7 +44,7 @@
                         <div class="col-sm-10">
                             <input type="text" class="form-control" id="cols" />
                             <br/>
-                            <button type="submit" id="btn1" class="btn btn-default">Start New Game</button>
+                            <button type="submit" id="startBtn" class="btn btn-default">Start New Game</button>
                         </div>
                     </div>
 
@@ -85,7 +85,8 @@
     <script>
 
         var maze;
-                $("#btn1").on("click", function () {
+        var myMazeBoard;
+        $("#startBtn").on("click", function () {
                     var name = $('#mazeName').val();
                     console.log(name);
                     var rows = $('#rows').val();
@@ -94,7 +95,9 @@
                     $.getJSON(url).done(function (mazeFeedback) {
                         maze = { "Name": mazeFeedback.Name, "Maze": mazeFeedback.Maze, "Rows": mazeFeedback.Rows, "Cols": mazeFeedback.Cols, "Start": mazeFeedback.Start, "Goal": mazeFeedback.End }
                         //$('#bla').append(mazeFeedback.Maze);
-                       $('#mazeCanvas').mazePlugin(maze,true);
+                        playerImage = document.getElementById("playerImage");
+                        exitImage = document.getElementById("goalImage");
+                        myMazeBoard = $('#mazeCanvas').mazePlugin(maze,playerImage,exitImage, true , null);
                            alert('Success');
                     }).fail(function (jqXHR, textStatus, err) {
                         alert('error ');
@@ -108,7 +111,8 @@
                     $.getJSON(url).done(function (solveFeedback) {
                         console.log(solveFeedback["Solution"]);
                         solution = { "Solution": solveFeedback["Solution"] };
-                        $('#mazeCanvas').solveMaze(solution);
+                        myMazeBoard.solve(solution);
+                        //$('#mazeCanvas').solveMaze(solution);
 
                     }).fail(function (jqXHR, textStatus, err) {
                         alert('error ');
