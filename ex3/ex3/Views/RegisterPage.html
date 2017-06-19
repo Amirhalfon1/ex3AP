@@ -1,20 +1,30 @@
-﻿<!DOCTYPE html>
+﻿
+<!DOCTYPE html>
 <html>
 <head>
     <title></title>
     <meta charset="utf-8" />
+    <link rel="stylesheet" type="text/css" href="../CSS/mystyle.css">
 </head>
 <body>
+
+    <ul>
+        <li><a class="active" href="#home">Single player</a></li>
+        <li><a href="#news">Multiplayer</a></li>
+        <li><a href="#contact">Settings</a></li>
+        <li><a href="#about">Login</a></li>
+        <li><a href="#about">Regsiter</a></li>
+    </ul>
     <h2>Signup Form</h2>
 
-    <form style="border:1px solid #ccc" class="pure-form">
-        <div class="container">
+    <!--<form style="border:1px solid #ccc" class="pure-form">-->
+        <div class="container" style="padding:20px;margin-top:30px;background-color:#1abc9c;height:1500px;">
             <label><b>User Name</b></label>
             <input type="text" placeholder="Enter User Name" id="USERNAME" name="userName" required>
-
+            <br/>
             <label><b>Email</b></label>
             <input type="email" placeholder="Enter Email" id="EMAIL" name="email" required>
-
+            <br />
             <!--<label><b>Password</b></label>
             <input type="password" placeholder="Enter Password" id="PASSWORD" name="psw" required>
 
@@ -23,17 +33,18 @@
 
             <label><b>Password</b></label>
             <input type="password" placeholder="Password" id="password" required>
+            <br />
             <label><b>Repeat Password</b></label>
             <input type="password" placeholder="Confirm Password" id="confirm_password" required>
-
+            <br />
 
             <div class="clearfix">
-                <button id ="signupBtn" onclick="addUser()" type="submit" class="signupbtn" style="margin-left: 500px">Sign Up</button>
+                <br />
+                <button id ="signupBtn" onclick="addUser()" type="submit" class="signupbtn" >Sign Up</button>
             </div>
 
         </div>
         <script src="../Scripts/jquery-3.1.1.js"></script>
-        <script src="../Scripts/jQuery.mazePlugin.js"></script>
         <script>
 
             function addUser() {
@@ -50,17 +61,18 @@
                 };
                 console.log(user);
                 $.post(usersUri, user).done(function () {
-                    var userName = document.getElementById("USERNAME");
-                    sessionStorage.setItem("USERNAME", userName.value);
-                    alert("user added to database and session");
-                    window.location.replace("MainWindow.html");
-                    location.reload();
-                    alert('user added');
-                     window.location.replace("MainWindow.html");
+                    alert("Success");
+                    //var userName = document.getElementById("USERNAME");
+                    //sessionStorage.setItem("USERNAME", userName.value);
+                    //alert("user added to database and session");
+                    //window.location.replace("MainWindow.html");
+                    //location.reload();
+                    //alert('user added');
+                    // window.location.replace("MainWindow.html");
                 });
             }
 
         </script>
-    </form>
+    <!--</form>-->
 </body>
 </html>
