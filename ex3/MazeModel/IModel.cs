@@ -11,10 +11,11 @@ namespace MazeModel
     public interface IModel
     {
         Maze GenerateMaze(string name, int rows, int cols);
-        Game StartGame(string name, int rows, int cols, TcpClient firstPlayer);
-        string Join(string gameName, System.Net.Sockets.TcpClient otherPlayer);
-        string Play(string direction, TcpClient otherPlayer);
-        void Close(TcpClient firstPlayer, TcpClient secondPlayer);
+        Maze StartGame(string name, int rows, int cols, string firstPlayerID);
+        Maze Join(string gameName, string joinsID);
+        string Play(string direction, string otherPlayerID);
+        string GetOtherPlayerClient(string clientID);
+        void Close(string firstPlayerID, string secondPlayerID);
         string[] GetListOfGames();
         string Solve(string name, int algo);
 

@@ -1,0 +1,100 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <title>The Maze</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+    <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="../CSS/mystyle.css">
+</head>
+
+<body>
+
+    <ul>
+        <li><a class="active" href="#home">Single player</a></li>
+        <li><a href="#news">Multiplayer</a></li>
+        <li><a href="#contact">Settings</a></li>
+        <li><a href="#about">Login</a></li>
+        <li><a href="#about">Regsiter</a></li>
+    </ul>
+
+    <div style="padding:20px;margin-top:30px;background-color:#1abc9c;height:1500px;">
+
+        <!--<form>-->
+
+        <div class="container body-content">
+            <h2>Single Player Game</h2><hr />
+            <div class="col-sm-4 form-horizontal">
+                <div class="form-group">
+                    <label for="mazeName" class="col-sm-2 control-label">Games</label>
+                    <div class="col-sm-10">
+                        <select id="gamesSelect" name="games">
+                            <!--<option value="0">BFS</option>
+                            <option value="1">DFS</option>-->
+                        </select>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="rows" class="col-sm-2 control-label">Rows</label>
+                    <div class="col-sm-10">
+                        <input type="text" class="form-control" id="rows" />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="cols" class="col-sm-2 control-label">Cols</label>
+                    <div class="col-sm-10">
+                        <input type="text" class="form-control" id="cols" />
+                        <br />
+                        <button type="submit" id="btn1" class="btn btn-default">Start New Game</button>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="cols" class="col-sm-2 control-label">Search Algo</label>
+                    <div class="col-sm-10">
+                        <select id="algoSelect" name="algo">
+                            <option value="0">BFS</option>
+                            <option value="1">DFS</option>
+                        </select>
+
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="cols" class="col-sm-2 control-label"></label>
+                    <div class="col-sm-10">
+                        <button type="submit" id="solveBtn" class="btn btn-default">Solve Maze!</button>
+                    </div>
+                </div>
+
+
+
+            </div>
+            <div class="col-sm-4 text-center">
+                <label for="cols" >Your Board</label>
+                <canvas id="playerCanvas" width="300" height="300" style="border:2px black
+                                solid"></canvas>
+                <img id="playerImage" src="resources/player.png" hidden="hidden" />
+                <img id="goalImage" src="resources/goal.png" hidden="hidden" />
+            </div>
+
+            <div class="col-sm-4 text-center">
+                <label for="cols" >Other Player Board</label>
+                <canvas id="otherCanvas" width="300" height="300" style="border:2px black
+                                solid"></canvas>
+            </div>
+
+        </div>
+    </div>
+
+    <script src="../Scripts/jquery-3.1.1.js"></script>
+    <script src="../Scripts/jQuery.mazePlugin.js"></script>
+    <script>
+
+
+    </script>
+    <!--</form>-->
+</body>
+</html>

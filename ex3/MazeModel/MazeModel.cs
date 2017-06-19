@@ -25,7 +25,7 @@ namespace MazeModel
         //contains all the games waiting for an other player.
         private Dictionary<string, Game> gamesLobby;
         //contains all the games that are being played.
-        private Dictionary<TcpClient, Game> gamesBeingPlayed;
+        private Dictionary<string, Game> gamesBeingPlayed;
         //contains all the names af all the mazes names to prevent duplication.
         private HashSet<string> multiplayerMazesAndGamesNames;
         private HashSet<string> singleplayerMazesAndGamesNames;
@@ -41,7 +41,7 @@ namespace MazeModel
             multiplayerMazesDictionary = new Dictionary<string, Maze>();
             singleplayerMazesDictionary = new Dictionary<string, Maze>();
             gamesLobby = new Dictionary<string, Game>();
-            gamesBeingPlayed = new Dictionary<TcpClient, Game>();
+            gamesBeingPlayed = new Dictionary<string, Game>();
             bfsSolver = new BFS<Position>();
             dfsSolver = new DFS<Position>();
             //hash set that resposible to aware of two games and mazes with the same name.
@@ -75,19 +75,17 @@ namespace MazeModel
         /// <param name="cols">The cols.</param>
         /// <param name="firstPlayer">The first player.</param>
         /// <returns>a new game.</returns>
-        public Game StartGame(string name, int rows, int cols, TcpClient firstPlayer)
+        public Maze StartGame(string name, int rows, int cols, string firstPlayerID)
         {
             Maze maze = mazeGenerator.Generate(rows, cols);
             maze.Name = name;
             multiplayerMazesAndGamesNames.Add(name);
-            var newGame = new Game(firstPlayer, maze); //publisher
+            var newGame = new Game(firstPlayerID, maze); //publisher
             //adding the new maze to the maze dictionary.
-            Console.WriteLine("the name is {0} ", name);
             multiplayerMazesDictionary.Add(name, maze);
-            Console.WriteLine("before add to lobby");
             //adding the game to the lobby till someone asks to join
             gamesLobby.Add(name, newGame);
-            return newGame;
+            return newGame.PlayedMaze();
         }
 
         /// <summary>
@@ -96,20 +94,19 @@ namespace MazeModel
         /// <param name="gameName">Name of the game.</param>
         /// <param name="otherPlayer">The other player.</param>
         /// <returns>string of the played game.</returns>
-        public string Join(string gameName, System.Net.Sockets.TcpClient otherPlayer)
+        public Maze Join(string gameName, string joinsID)
         {
             Game currentGAME = gamesLobby[gameName];
 
             /*pop out the game out of the lobby and moves it
             to another dictonery of a being played games */
             gamesLobby.Remove(gameName);
-            gamesBeingPlayed.Add(otherPlayer, currentGAME);
+            gamesBeingPlayed.Add(joinsID, currentGAME);
             gamesBeingPlayed.Add(currentGAME.getCreatorPlayer(), currentGAME);
 
             //notify that another player joined the game.
-            currentGAME.joinAnotherPlayer(otherPlayer);
-
-            return currentGAME.PlayedMaze().ToJSON();
+            currentGAME.joinAnotherPlayer(joinsID);
+            return currentGAME.PlayedMaze();
         }
 
         /// <summary>
@@ -118,10 +115,10 @@ namespace MazeModel
         /// <param name="direction">The direction.</param>
         /// <param name="otherPlayer">The other player.</param>
         /// <returns>string of the direction that was played.</returns>
-        public string Play(string direction, TcpClient otherPlayer)
+        public string Play(string direction, string otherPlayerID)
         {
-            Game currentGAME = gamesBeingPlayed[otherPlayer];
-            TcpClient playerToNotify = currentGAME.getOtherPlayer(otherPlayer);
+            Game currentGAME = gamesBeingPlayed[otherPlayerID];
+            string playerToNotify = currentGAME.getOtherPlayer(otherPlayerID);
             return currentGAME.PlayedMaze().ToJSON();
         }
 
@@ -130,15 +127,15 @@ namespace MazeModel
         /// </summary>
         /// <param name="firstPlayer">The first player.</param>
         /// <param name="secondPlayer">The second player.</param>
-        public void Close(TcpClient firstPlayer, TcpClient secondPlayer)
+        public void Close(string firstPlayerID, string secondPlayerID)
         {
-            Game currentGame = gamesBeingPlayed[firstPlayer];
+            Game currentGame = gamesBeingPlayed[firstPlayerID];
             //removing the maze of the game from the maze dictionery.
             multiplayerMazesDictionary.Remove(currentGame.Name);
             multiplayerMazesAndGamesNames.Remove(currentGame.Name);
             //removing both of the players from the list.
-            gamesBeingPlayed.Remove(firstPlayer);
-            gamesBeingPlayed.Remove(secondPlayer);
+            gamesBeingPlayed.Remove(firstPlayerID);
+            gamesBeingPlayed.Remove(secondPlayerID);
         }
 
         /// <summary>
@@ -146,11 +143,11 @@ namespace MazeModel
         /// </summary>
         /// <param name="client">The client.</param>
         /// <returns></returns>
-        public TcpClient GetOtherPlayerClient(TcpClient client)
+        public string GetOtherPlayerClient(string clientID)
         {
-            Game currentGAME = gamesBeingPlayed[client];
-            TcpClient otherPlayer = currentGAME.getOtherPlayer(client);
-            return otherPlayer;
+            Game currentGAME = gamesBeingPlayed[clientID];
+            string otherPlayerID = currentGAME.getOtherPlayer(clientID);
+            return otherPlayerID;
 
         }
 
@@ -159,9 +156,9 @@ namespace MazeModel
         /// </summary>
         /// <param name="client">The client.</param>
         /// <returns>the name of the game</returns>
-        public string GetClientGameName(TcpClient client)
+        public string GetClientGameName(string clientID)
         {
-            Game currentGAME = gamesBeingPlayed[client];
+            Game currentGAME = gamesBeingPlayed[clientID];
             return currentGAME.Name;
 
         }
@@ -303,7 +300,6 @@ namespace MazeModel
                 }
 
             }
-
             //returning it back reversed
             char[] arrayToReverse = pathToReturn.ToString().ToCharArray();
             Array.Reverse(arrayToReverse);

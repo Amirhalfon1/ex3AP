@@ -13,15 +13,15 @@ namespace MazeModel
     public class Game
     {
 
-        private System.Net.Sockets.TcpClient gameCreatorPlayer, secondPlayer;
+        private string gameCreatorPlayerID, secondPlayerID;
         private bool canStart;
         Maze playedMaze;
         string name;
 
 
-        public Game(System.Net.Sockets.TcpClient firstPlayer, Maze maze)
+        public Game(string firstPlayerID, Maze maze)
         {
-            gameCreatorPlayer = firstPlayer;
+            gameCreatorPlayerID = firstPlayerID;
             playedMaze = maze;
             canStart = false;
             name = maze.Name;
@@ -48,12 +48,11 @@ namespace MazeModel
         /// Joins another player to the game.
         /// </summary>
         /// <param name="OtherPlayer">The other player.</param>
-        public void joinAnotherPlayer(System.Net.Sockets.TcpClient OtherPlayer)
+        public void joinAnotherPlayer(string OtherPlayerID)
         {
-            secondPlayer = OtherPlayer;
+            secondPlayerID = OtherPlayerID;
             canStart = true;
-            //notify
-            //OngameNeedsToStart();
+
         }
 
         /// <summary>
@@ -61,11 +60,11 @@ namespace MazeModel
         /// </summary>
         /// <param name="player">The player.</param>
         /// <returns></returns>
-        public TcpClient getOtherPlayer(TcpClient player)
+        public string getOtherPlayer(string playerID)
         {
-            if (player == gameCreatorPlayer)
-                return secondPlayer;
-            return gameCreatorPlayer;
+            if (playerID.Equals(gameCreatorPlayerID))
+                return secondPlayerID;
+            return gameCreatorPlayerID;
         }
 
         //protected virtual void OngameNeedsToStart()
@@ -100,9 +99,9 @@ namespace MazeModel
         /// Gets the creator player.
         /// </summary>
         /// <returns></returns>
-        public TcpClient getCreatorPlayer()
+        public string getCreatorPlayer()
         {
-            return gameCreatorPlayer;
+            return gameCreatorPlayerID;
         }
     }
 }

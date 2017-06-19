@@ -7,46 +7,10 @@
     <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
     <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
-    <!--<style>
-        body {
-            margin: 0;
-        }
-
-        ul {
-            list-style-type: none;
-            margin: 0;
-            padding: 0;
-            overflow: hidden;
-            background-color: #333;
-            position: fixed;
-            top: 0;
-            width: 100%;
-        }
-
-        li {
-            float: left;
-        }
-
-            li a {
-                display: block;
-                color: white;
-                text-align: center;
-                padding: 14px 16px;
-                text-decoration: none;
-            }
-
-                li a:hover:not(.active) {
-                    background-color: #111;
-                }
-
-        .active {
-            background-color: #4CAF50;
-        }
-    </style>-->
     <link rel="stylesheet" type="text/css" href="../CSS/mystyle.css">
 </head>
 
-<body onkeydown="move(event)">
+<body>
 
     <ul>
         <li><a class="active" href="#home">Single player</a></li>
@@ -130,7 +94,7 @@
                     $.getJSON(url).done(function (mazeFeedback) {
                         maze = { "Name": mazeFeedback.Name, "Maze": mazeFeedback.Maze, "Rows": mazeFeedback.Rows, "Cols": mazeFeedback.Cols, "Start": mazeFeedback.Start, "Goal": mazeFeedback.End }
                         //$('#bla').append(mazeFeedback.Maze);
-                       $('#mazeCanvas').mazePlugin(maze);
+                       $('#mazeCanvas').mazePlugin(maze,true);
                            alert('Success');
                     }).fail(function (jqXHR, textStatus, err) {
                         alert('error ');
