@@ -64,8 +64,8 @@
                 </div>
                 <div class="col-sm-8 text-center">
                     
-                    <canvas id="mazeCanvas" width="400" height="400" style="border:2px black
-                                solid"></canvas>
+                    <canvas class="showWhenReady" id="mazeCanvas" width="400" height="400" style="border:2px black
+                                solid" hidden="hidden" ></canvas>
                     <img id="playerImage" src="resources/player.png" hidden="hidden" />
                     <img id="goalImage" src="resources/goal.png" hidden="hidden" />
                 </div>
@@ -90,8 +90,8 @@
                         //$('#bla').append(mazeFeedback.Maze);
                         playerImage = document.getElementById("playerImage");
                         exitImage = document.getElementById("goalImage");
-                        myMazeBoard = $('#mazeCanvas').mazePlugin(maze,playerImage,exitImage, true);
-                           alert('Success');
+                        myMazeBoard = $('#mazeCanvas').mazePlugin(maze, playerImage, exitImage, true);
+                        $('.showWhenReady').fadeIn("slow", function () { });
                     }).fail(function (jqXHR, textStatus, err) {
                         alert('error ');
                     });
