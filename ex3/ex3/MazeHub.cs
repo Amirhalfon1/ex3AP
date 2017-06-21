@@ -40,13 +40,13 @@ namespace ex3
             Clients.Client(otherPlayerID).drawMazes(obj);
             return obj;
         }
-        public void Play(string direction)
+        public void Play(string direction, int oldRow, int oldCol)
         {
             MultiPlayerModel model = MultiPlayerModel.GetInstance();
             string clientID = Context.ConnectionId;
             string otherPlayerID = model.GetOtherPlayerID(clientID);
             //TODO: Call to function to draw this move on the other client canvas.
-             Clients.Client(otherPlayerID).otherMoving(direction);
+             Clients.Client(otherPlayerID).otherMoving(direction,oldRow,oldCol);
         }
 
         //TODOBOOM

@@ -90,7 +90,7 @@
                         //$('#bla').append(mazeFeedback.Maze);
                         playerImage = document.getElementById("playerImage");
                         exitImage = document.getElementById("goalImage");
-                        myMazeBoard = $('#mazeCanvas').mazePlugin(maze,playerImage,exitImage, true , null);
+                        myMazeBoard = $('#mazeCanvas').mazePlugin(maze,playerImage,exitImage, true);
                            alert('Success');
                     }).fail(function (jqXHR, textStatus, err) {
                         alert('error ');
@@ -104,7 +104,7 @@
                     $.getJSON(url).done(function (solveFeedback) {
                         console.log(solveFeedback["Solution"]);
                         solution = { "Solution": solveFeedback["Solution"] };
-                        myMazeBoard.solve(solution);
+                        myMazeBoard.solveMaze(solution);
                         //$('#mazeCanvas').solveMaze(solution);
 
                     }).fail(function (jqXHR, textStatus, err) {

@@ -88,8 +88,8 @@
         var myMazeBoard, otherMazeBoard;
         var multiPlayer = $.connection.mazeHub;
 
-        var notifyOtherFunc = function (direction) {
-            multiPlayer.server.play(direction);
+        var notifyOtherFunc = function (direction,oldRow,oldCol) {
+            multiPlayer.server.play(direction,oldRow,oldCol);
 
         }
         // Create a function that the hub can call to broadcast messages
@@ -98,14 +98,15 @@
             maze = { "Name": mazeFeedback.Name, "Maze": mazeFeedback.Maze, "Rows": mazeFeedback.Rows, "Cols": mazeFeedback.Cols, "Start": mazeFeedback.Start, "Goal": mazeFeedback.End }
             playerImage = document.getElementById("playerImage");
             exitImage = document.getElementById("goalImage");
-            this.otherMazeBoard = $('#otherCanvas').mazePlugin(maze, playerImage, exitImage, false, null,"firstString");
-            this.myMazeBoard = $('#playerCanvas').mazePlugin(maze, playerImage, exitImage, true, notifyOtherFunc, "SecondString");
+            this.otherMazeBoard = $('#otherCanvas').mazePlugin(maze, playerImage, exitImage, false);
+            this.myMazeBoard = $('#playerCanvas').mazePlugin(maze, playerImage, exitImage, true, notifyOtherFunc);
 
 
         };
 
-        multiPlayer.client.otherMoving = function (direction) {
-            this.otherMazeBoard.moveByString(direction);
+        multiPlayer.client.otherMoving = function (direction,oldRow,oldCol) {
+            //this.otherMazeBoard.moveByString(direction);
+            this.otherMazeBoard.moveOther(direction, oldRow, oldCol);
         };
 
         // Start the connection
