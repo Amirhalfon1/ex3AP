@@ -7,13 +7,7 @@
     <link rel="stylesheet" type="text/css" href="../CSS/register.css">
 </head>
 <body>
-    <ul>
-        <li><a class="active" href="#home">Single player</a></li>
-        <li><a href="#news">Multiplayer</a></li>
-        <li><a href="#contact">Settings</a></li>
-        <li><a href="#about">Login</a></li>
-        <li><a href="#about">Regsiter</a></li>
-    </ul>
+    <div id="navigationDiv"></div>
     <form>
         <div class="container" style="padding:20px;margin-top:30px;background-color:#1abc9c;height:1500px;">
             <label><b>Name</b></label>
@@ -35,6 +29,10 @@
             </div>
         </div>
     </form>
+    <script src="../Scripts/jquery-3.1.1.js"></script>
+    <script>
+        $('#navigationDiv').load("menuBar.html");
+    </script>
 
 </body>
 </html>

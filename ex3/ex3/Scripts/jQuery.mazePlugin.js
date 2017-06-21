@@ -1,119 +1,132 @@
 ﻿
 (function ($) {
 
-    var myCanvas;
-    var player;
-    var goal;
-    var context;
-    var mazeObject;
-    var currentPos;
-    var cellWidth, cellHeight;
-    var rows, cols;
-    var notifyOther;
+    //var myCanvas;
+    //var player;
+    //var goal;
+    //var context;
+    //var mazeObject;
+    //var currentPos;
+    //var cellWidth, cellHeight;
+    //var rows, cols;
+    ////var notifyOther;
+    //var dataX;
 
-    var moveLeft = function () {
-        console.log(mazeObject);
-        var requiredCell = mazeObject.Maze.charAt((currentPos.Row * cols) + currentPos.Col - 1);
-        console.log(requiredCell);
-        if (requiredCell === '0') {
-            context.clearRect(currentPos.Col * cellWidth, currentPos.Row * cellHeight,
-                cellWidth, cellHeight);
-            currentPos.Col = currentPos.Col - 1;
-            context.drawImage(player, currentPos.Col * cellWidth, currentPos.Row * cellHeight,
-                cellWidth, cellHeight);
-            if (notifyOther != null) {
-                notifyOther("left");
-            }
-        }
-    };
-    var moveRight = function () {
-        var requiredCell = mazeObject.Maze.charAt((currentPos.Row * cols) + currentPos.Col + 1);
-        console.log(requiredCell);
-        if (requiredCell === '0') {
-            context.clearRect(currentPos.Col * cellWidth, currentPos.Row * cellHeight,
-                cellWidth, cellHeight);
-            currentPos.Col = currentPos.Col + 1;
-            context.drawImage(player, currentPos.Col * cellWidth, currentPos.Row * cellHeight,
-                cellWidth, cellHeight);
-            if (notifyOther != null) {
-                notifyOther("right");
-            }
-        }
-    };
-    var moveUp = function () {
-        var requiredCell = mazeObject.Maze.charAt(((currentPos.Row - 1) * cols) + currentPos.Col);
-        console.log(requiredCell);
-        if (requiredCell === '0') {
-            context.clearRect(currentPos.Col * cellWidth, currentPos.Row * cellHeight,
-                cellWidth, cellHeight);
-            currentPos.Row = currentPos.Row - 1;
-            context.drawImage(player, currentPos.Col * cellWidth, currentPos.Row * cellHeight,
-                cellWidth, cellHeight);
-            if (notifyOther != null) {
-                notifyOther("up");
-            }
-        }
-    };
-    var moveDown = function () {
-        var requiredCell = mazeObject.Maze.charAt(((currentPos.Row + 1) * cols) + currentPos.Col);
-        console.log(requiredCell);
-        if (requiredCell === '0') {
-            context.clearRect(currentPos.Col * cellWidth, currentPos.Row * cellHeight,
-                cellWidth, cellHeight);
-            currentPos.Row = currentPos.Row + 1;
-            context.drawImage(player, currentPos.Col * cellWidth, currentPos.Row * cellHeight,
-                cellWidth, cellHeight);
-            if (notifyOther != null) {
-                notifyOther("down");
-            }
-        }
-    };
-    //function to invoke after each move
-    var movePlayer = function move(e) {
-        var directionKey = false;
-        var keyPressed;
-        keyPressed = e.keyCode;
-        if (window.event) {
-            switch (keyPressed) {
-                case 37:
-                    directionKey = true;
-                    e.preventDefault();
-                    moveLeft();
-                    break;
-                case 38:
-                    directionKey = true;
-                    e.preventDefault();
-                    moveUp();
-                    break;
-                case 39:
-                    directionKey = true;
-                    e.preventDefault();
-                    moveRight();
-                    break;
-                case 40:
-                    directionKey = true;
-                    e.preventDefault();
-                    moveDown();
-                    break;
-                default:
-                    break;
-            }
-            if (directionKey) {
-                if ((currentPos.Row == mazeObject.Goal.Row) && (currentPos.Col == mazeObject.Goal.Col)) {
-                    $("body").off("keydown", movePlayer);
-                    alert("You Won!");
-                }
-            }
-        }
-    }
+    //var moveLeft = function () {
+    //    console.log(mazeObject);
+    //    var requiredCell = mazeObject.Maze.charAt((currentPos.Row * cols) + currentPos.Col - 1);
+    //    console.log(requiredCell);
+    //    if (requiredCell === '0') {
+    //        context.clearRect(currentPos.Col * cellWidth, currentPos.Row * cellHeight,
+    //            cellWidth, cellHeight);
+    //        currentPos.Col = currentPos.Col - 1;
+    //        context.drawImage(player, currentPos.Col * cellWidth, currentPos.Row * cellHeight,
+    //            cellWidth, cellHeight);
+    //        if (notifyOther != null) {
+    //            notifyOther("left");
+    //        }
+    //    }
+    //};
+    //var moveRight = function () {
+    //    var requiredCell = mazeObject.Maze.charAt((currentPos.Row * cols) + currentPos.Col + 1);
+    //    console.log(requiredCell);
+    //    if (requiredCell === '0') {
+    //        context.clearRect(currentPos.Col * cellWidth, currentPos.Row * cellHeight,
+    //            cellWidth, cellHeight);
+    //        currentPos.Col = currentPos.Col + 1;
+    //        context.drawImage(player, currentPos.Col * cellWidth, currentPos.Row * cellHeight,
+    //            cellWidth, cellHeight);
+    //        if (notifyOther != null) {
+    //            notifyOther("right");
+    //        }
+    //    }
+    //};
+    //var moveUp = function () {
+    //    var requiredCell = mazeObject.Maze.charAt(((currentPos.Row - 1) * cols) + currentPos.Col);
+    //    console.log(requiredCell);
+    //    if (requiredCell === '0') {
+    //        context.clearRect(currentPos.Col * cellWidth, currentPos.Row * cellHeight,
+    //            cellWidth, cellHeight);
+    //        currentPos.Row = currentPos.Row - 1;
+    //        context.drawImage(player, currentPos.Col * cellWidth, currentPos.Row * cellHeight,
+    //            cellWidth, cellHeight);
+    //        if (notifyOther != null) {
+    //            notifyOther("up");
+    //        }
+    //    }
+    //};
+    //var moveDown = function () {
+    //    var requiredCell = mazeObject.Maze.charAt(((currentPos.Row + 1) * cols) + currentPos.Col);
+    //    console.log(requiredCell);
+    //    if (requiredCell === '0') {
+    //        context.clearRect(currentPos.Col * cellWidth, currentPos.Row * cellHeight,
+    //            cellWidth, cellHeight);
+    //        currentPos.Row = currentPos.Row + 1;
+    //        context.drawImage(player, currentPos.Col * cellWidth, currentPos.Row * cellHeight,
+    //            cellWidth, cellHeight);
+    //        if (notifyOther != null) {
+    //            notifyOther("down");
+    //        }
+    //    }
+    //};
+    ////function to invoke after each move
+    //var movePlayer = function move(e) {
+    //    var directionKey = false;
+    //    var keyPressed;
+    //    keyPressed = e.keyCode;
+    //    if (window.event) {
+    //        switch (keyPressed) {
+    //            case 37:
+    //                directionKey = true;
+    //                e.preventDefault();
+    //                moveLeft();
+    //                break;
+    //            case 38:
+    //                directionKey = true;
+    //                e.preventDefault();
+    //                moveUp();
+    //                break;
+    //            case 39:
+    //                directionKey = true;
+    //                e.preventDefault();
+    //                moveRight();
+    //                break;
+    //            case 40:
+    //                directionKey = true;
+    //                e.preventDefault();
+    //                moveDown();
+    //                break;
+    //            default:
+    //                break;
+    //        }
+    //        if (directionKey) {
+    //            if ((currentPos.Row == mazeObject.Goal.Row) && (currentPos.Col == mazeObject.Goal.Col)) {
+    //                $("body").off("keydown", movePlayer);
+    //                alert("You Won!");
+    //            }
+    //        }
+    //    }
+    //}
 
 
 
 
-    $.fn.mazePlugin = function (maze, playerImage, exitImage, canMove, notifyOtherPlayer) {
-        if (notifyOtherPlayer != null) {
-            notifyOther = notifyOtherPlayer;
-        }
+    $.fn.mazePlugin = function (maze, playerImage, exitImage, canMove, notifyOtherPlayer, myString) {
+        var myCanvas;
+        this.dataX = myString;
+        this.canMove = canMove;
+        var player;
+        var goal;
+        var context;
+        var mazeObject;
+        //var currentPos;
+
+        var cellWidth, cellHeight;
+        var rows, cols;
+        var notifyOther = notifyOtherPlayer;
+        //var notifyOther;
+
+        var dataX;
         player = playerImage;
         goal = exitImage;
         myCanvas = this[0];
@@ -123,8 +136,73 @@
         cols = maze.Cols;
         cellWidth = myCanvas.width / cols;
         cellHeight = myCanvas.height / rows;
-        currentPos = maze.Start;
+        this.currentPosition = maze.Start;
+        var currentPos = this.currentPosition;
         mazeObject = maze;
+
+        var moveLeft = function () {
+            console.log(mazeObject);
+            var requiredCell = mazeObject.Maze.charAt((currentPos.Row * cols) + currentPos.Col - 1);
+            console.log(requiredCell);
+            if (requiredCell === '0') {
+                context.clearRect(currentPos.Col * cellWidth, currentPos.Row * cellHeight,
+                    cellWidth, cellHeight);
+                currentPos.Col = currentPos.Col - 1;
+                context.drawImage(player, currentPos.Col * cellWidth, currentPos.Row * cellHeight,
+                    cellWidth, cellHeight);
+                if (notifyOther != null) {
+                    notifyOther("left");
+                }
+            }
+        };
+        var moveRight = function () {
+            var requiredCell = mazeObject.Maze.charAt((currentPos.Row * cols) + currentPos.Col + 1);
+            console.log(requiredCell);
+            if (requiredCell === '0') {
+                context.clearRect(currentPos.Col * cellWidth, currentPos.Row * cellHeight,
+                    cellWidth, cellHeight);
+                currentPos.Col = currentPos.Col + 1;
+                context.drawImage(player, currentPos.Col * cellWidth, currentPos.Row * cellHeight,
+                    cellWidth, cellHeight);
+                if (notifyOther != null) {
+                    notifyOther("right");
+                }
+            }
+        };
+        var moveUp = function () {
+            var requiredCell = mazeObject.Maze.charAt(((currentPos.Row - 1) * cols) + currentPos.Col);
+            console.log(requiredCell);
+            if (requiredCell === '0') {
+                context.clearRect(currentPos.Col * cellWidth, currentPos.Row * cellHeight,
+                    cellWidth, cellHeight);
+                currentPos.Row = currentPos.Row - 1;
+                context.drawImage(player, currentPos.Col * cellWidth, currentPos.Row * cellHeight,
+                    cellWidth, cellHeight);
+                if (notifyOther != null) {
+                    notifyOther("up");
+                }
+            }
+        };
+        var moveDown = function () {
+            var requiredCell = mazeObject.Maze.charAt(((currentPos.Row + 1) * cols) + currentPos.Col);
+            console.log(requiredCell);
+            if (requiredCell === '0') {
+                context.clearRect(currentPos.Col * cellWidth, currentPos.Row * cellHeight,
+                    cellWidth, cellHeight);
+                currentPos.Row = currentPos.Row + 1;
+                context.drawImage(player, currentPos.Col * cellWidth, currentPos.Row * cellHeight,
+                    cellWidth, cellHeight);
+                if (notifyOther != null) {
+                    notifyOther("down");
+                }
+            }
+        };
+
+        if (notifyOtherPlayer != null) {
+
+            this.notifyOther = notifyOtherPlayer;
+        }
+
         for (var i = 0; i < rows; i++) {
             for (var j = 0; j < cols; j++) {
                 if (maze.Maze.charAt(++offset) == 1) {
@@ -138,122 +216,143 @@
             cellWidth, cellHeight);
         context.drawImage(goal, maze.Goal.Col * cellWidth, maze.Goal.Row * cellHeight,
             cellWidth, cellHeight);
-        if (canMove) {
-            $("body").keydown(movePlayer);
-        }
-        this.solve = function (solution) {
-            //Turning off the function occured when key event.
-            $("body").off("keydown", movePlayer);
-            currentPos.Row = mazeObject.Start.Row;
-            currentPos.Col = mazeObject.Start.Col;
-            var frameActivator = window.setInterval(frame, 600);
-            var i = 0;
-            function frame() {
 
-                if (i < solution.Solution.length) {
-                    switch (solution.Solution.charAt(i)) {
-                        //left
-                        case '0':
-                            moveLeft();
-                            break;
+        this.moveByString = function (direction) {
 
-                        //right
-                        case '1':
-                            moveRight();
-                            break;
+            switch (direction) {
+                //left
+                case "left":
+                    moveLeft();
+                    break;
 
-                        //up
-                        case '2':
-                            moveUp();
-                            break;
+                //right
+                case "right":
+                    moveRight();
+                    break;
 
-                        //down
-                        case '3':
-                            moveDown();
-                            break;
-                    }
-                    i++;
-                }
-                if (i == solution.Solution.length) {
-                    alert("Solve finished !");
-                    clearInterval(frameActivator);
-                }
+                //up
+                case "up":
+                    moveUp();
+                    break;
 
+                //down
+                case "down":
+                    moveDown();
+                    break;
             }
-
-            
+        }
+        //function to invoke after each move
+        this.movePlayer = function move(e) {
+            var directionKey = false;
+            var keyPressed;
+            keyPressed = e.keyCode;
+            if (window.event) {
+                switch (keyPressed) {
+                    case 37:
+                        directionKey = true;
+                        e.preventDefault();
+                        moveLeft();
+                        break;
+                    case 38:
+                        directionKey = true;
+                        e.preventDefault();
+                        moveUp();
+                        break;
+                    case 39:
+                        directionKey = true;
+                        e.preventDefault();
+                        moveRight();
+                        break;
+                    case 40:
+                        directionKey = true;
+                        e.preventDefault();
+                        moveDown();
+                        break;
+                    default:
+                        break;
+                }
+                if (directionKey) {
+                    if ((currentPos.Row == mazeObject.Goal.Row) && (currentPos.Col == mazeObject.Goal.Col)) {
+                        $("body").off("keydown", movePlayer);
+                        alert("You Won!");
+                    }
+                }
+            }
+        }
+        if (this.canMove) {
+            $("body").keydown(this.movePlayer);
         }
         return this;
     }
 
 
-    $.fn.moveByString = function (direction) {
+    //$.fn.moveByString = function (direction) {
 
-        switch (direction) {
-            //left
-            case "left":
-                moveLeft();
-                break;
+    //    switch (direction) {
+    //        //left
+    //        case "left":
+    //            moveLeft();
+    //            break;
 
-            //right
-            case "right":
-                moveRight();
-                break;
+    //        //right
+    //        case "right":
+    //            moveRight();
+    //            break;
 
-            //up
-            case "up":
-                moveUp();
-                break;
+    //        //up
+    //        case "up":
+    //            moveUp();
+    //            break;
 
-            //down
-            case "down":
-                moveDown();
-                break;
-        }
-    }
-
-    //$.fn.solveMaze = function (solution) {
-    //    //Turning off the function occured when key event.
-    //    $("body").off("keydown", movePlayer);
-    //    currentPos.Row = mazeObject.Start.Row;
-    //    currentPos.Col = mazeObject.Start.Col;
-    //    var frameActivator = window.setInterval(frame, 600);
-    //    var i = 0;
-    //    function frame() {
-
-    //        if (i < solution.Solution.length) {
-    //            switch (solution.Solution.charAt(i)) {
-    //                //left
-    //                case '0':
-    //                    moveLeft();
-    //                    break;
-
-    //                //right
-    //                case '1':
-    //                    moveRight();
-    //                    break;
-
-    //                //up
-    //                case '2':
-    //                    moveUp();
-    //                    break;
-
-    //                //down
-    //                case '3':
-    //                    moveDown();
-    //                    break;
-    //            }
-    //            i++;
-    //        }
-    //        if (i == solution.Solution.length) {
-    //            alert("Solve finished !");
-    //            clearInterval(frameActivator);
-    //        }
-
+    //        //down
+    //        case "down":
+    //            moveDown();
+    //            break;
     //    }
-
-    //    return this;
     //}
+
+    $.fn.solveMaze = function (solution) {
+        //Turning off the function occured when key event.
+        $("body").off("keydown", movePlayer);
+        currentPos.Row = mazeObject.Start.Row;
+        currentPos.Col = mazeObject.Start.Col;
+        var frameActivator = window.setInterval(frame, 600);
+        var i = 0;
+        function frame() {
+
+            if (i < solution.Solution.length) {
+                switch (solution.Solution.charAt(i)) {
+                    //left
+                    case '0':
+                        moveLeft();
+                        break;
+
+                    //right
+                    case '1':
+                        moveRight();
+                        break;
+
+                    //up
+                    case '2':
+                        moveUp();
+                        break;
+
+                    //down
+                    case '3':
+                        moveDown();
+                        break;
+                }
+                i++;
+            }
+            if (i == solution.Solution.length) {
+                alert("Solve finished !");
+                clearInterval(frameActivator);
+            }
+
+        }
+
+        return this;
+    }
 
 
 })(jQuery);

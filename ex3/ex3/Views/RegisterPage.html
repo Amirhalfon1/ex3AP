@@ -7,14 +7,7 @@
     <link rel="stylesheet" type="text/css" href="../CSS/mystyle.css">
 </head>
 <body>
-
-    <ul>
-        <li><a class="active" href="#home">Single player</a></li>
-        <li><a href="#news">Multiplayer</a></li>
-        <li><a href="#contact">Settings</a></li>
-        <li><a href="#about">Login</a></li>
-        <li><a href="#about">Regsiter</a></li>
-    </ul>
+    <div id="navigationDiv"></div>
     <h2>Signup Form</h2>
 
     <!--<form style="border:1px solid #ccc" class="pure-form">-->
@@ -46,7 +39,7 @@
         </div>
         <script src="../Scripts/jquery-3.1.1.js"></script>
         <script>
-
+            $('#navigationDiv').load("menuBar.html");
             function addUser() {
                 var usersUri = "../api/UserDetailsModels/";
                 console.log($("#USERNAME").val());
