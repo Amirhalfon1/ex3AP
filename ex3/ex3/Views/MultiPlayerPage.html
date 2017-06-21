@@ -62,15 +62,17 @@
             </div>
             <div class="col-sm-4 text-center">
                 <label for="cols">Your Board</label>
-                <canvas id="playerCanvas" width="300" height="300" style="border:2px black
+                <canvas class="playerCanvases" id="playerCanvas" width="300" height="300" style="border:2px black
                                 solid"></canvas>
+                <img class="waitingImages" src="resources/waiting.gif" hidden="hidden" height="300" width="300" />
                 <img id="playerImage" src="resources/player.png" hidden="hidden" />
-                <img id="goalImage" src="resources/goal.png" hidden="hidden" />
+                <img id="goalImage" src="resources/goal.png" hidden="hidden"  />
             </div>
 
             <div class="col-sm-4 text-center">
                 <label for="cols">Other Player Board</label>
-                <canvas id="otherCanvas" width="300" height="300" style="border:2px black
+                <img class="waitingImages" src="resources/waiting.gif"  hidden="hidden"  height="300" width="300" />
+                <canvas class="playerCanvases" id="otherCanvas" width="300" height="300" style="border:2px black
                                 solid"></canvas>
             </div>
 
@@ -85,6 +87,11 @@
 
     <script>
         $('#navigationDiv').load("menuBar.html");
+        //$(document).ready(function () {
+        //    $('#waitingImage').hide();
+        //});
+        //$('#waitingImage').hide();
+
         var myMazeBoard, otherMazeBoard;
         var multiPlayer = $.connection.mazeHub;
 
@@ -94,7 +101,11 @@
         }
         // Create a function that the hub can call to broadcast messages
         multiPlayer.client.drawMazes = function (mazeFeedback) {
-            alert('Starting to draw the mazes');
+
+            $('.playerCanvases').show();
+            //$('.waitingImages').hide();
+            $('.waitingImages').fadeOut("slow", function () { });
+            //alert('Starting to draw the mazes');
             maze = { "Name": mazeFeedback.Name, "Maze": mazeFeedback.Maze, "Rows": mazeFeedback.Rows, "Cols": mazeFeedback.Cols, "Start": mazeFeedback.Start, "Goal": mazeFeedback.End }
             playerImage = document.getElementById("playerImage");
             exitImage = document.getElementById("goalImage");
@@ -111,8 +122,10 @@
 
         // Start the connection
         $.connection.hub.start().done(function () {
-
+           
             $('#btnStart').click(function () {
+                $('.playerCanvases').hide();
+                $('.waitingImages').show();
                 var gameName = $('#name').val();
                 var mazeRows = $('#rows').val();
                 var mazeCols = $('#cols').val();
@@ -124,6 +137,8 @@
             });
 
             $('#btnJoin').click(function () {
+                $('.playerCanvases').hide();
+                $('.waitingImages').show();
                 var gameName = $('#gamesSelect').val();
                 // Call the Send method on the hub
                 multiPlayer.server.join(gameName);

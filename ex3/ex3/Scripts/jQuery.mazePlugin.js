@@ -37,7 +37,6 @@
             } else {
                 //console.log(mazeObject);
                 var requiredCell = mazeObject.Maze.charAt((myCanvas.currentPos.Row * cols) + myCanvas.currentPos.Col - 1);
-                console.log(requiredCell);
                 if (requiredCell === '0') {
                     context.clearRect(myCanvas.currentPos.Col * cellWidth, myCanvas.currentPos.Row * cellHeight,
                         cellWidth, cellHeight);
