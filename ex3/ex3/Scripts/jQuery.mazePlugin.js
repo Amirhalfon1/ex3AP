@@ -137,6 +137,7 @@
         this.movePlayer = function move(e) {
             var directionKey = false;
             var keyPressed;
+            e.stopPropagation();
             keyPressed = e.keyCode;
             if (window.event) {
                 switch (keyPressed) {

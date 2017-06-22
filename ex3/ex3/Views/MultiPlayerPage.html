@@ -86,10 +86,7 @@
 
     <script>
         $('#navigationDiv').load("menuBar.html");
-        //$(document).ready(function () {
-        //    $('#waitingImage').hide();
-        //});
-        //$('#waitingImage').hide();
+
 
         var myMazeBoard, otherMazeBoard;
         var multiPlayer = $.connection.mazeHub;
@@ -139,22 +136,6 @@
                 //Show something that indicate we are waiting to other player...
             });
 
-            //$('#gamesSelect').click(function () {
-                
-            //    multiPlayer.server.list().done(function (result) {
-            //        if (result) {
-            //            $('#gamesSelect').empty();
-            //            $.each(result, function (i, item) {
-            //                $('#gamesSelect').append($('<option>', {
-            //                    value: item,
-            //                    text: item
-            //                }));
-            //            });
-
-            //        }
-            //    });
-
-            //});
 
             setInterval(function () {
 
@@ -173,6 +154,7 @@
                     }
                 });
             }, 1000);
+
 
             $('#btnJoin').click(function () {
                 //$('.showWithConnection').fadeOut("slow", function () { });

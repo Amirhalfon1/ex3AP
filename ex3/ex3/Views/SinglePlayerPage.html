@@ -63,10 +63,11 @@
 
                 </div>
                 <div class="col-sm-8 text-center">
+                    <canvas class="showWhenReady" id="mazeCanvas" width="400" height="400" style="border:2px black
+                                solid" hidden="hidden"></canvas>
                     <img class="showWhenWait" id="waitLogo" src="resources/waitForServer.png" hidden="hidden" />
                     <img class="showWhenWait" id="waitGif" src="resources/waiting.gif" hidden="hidden" />
-                    <canvas class="showWhenReady" id="mazeCanvas" width="400" height="400" style="border:2px black
-                                solid" hidden="hidden" ></canvas>
+
 
                     <img id="playerImage" src="resources/player.png" hidden="hidden" />
                     <img id="goalImage" src="resources/goal.png" hidden="hidden" />
@@ -89,14 +90,15 @@
                     var cols = $('#cols').val();
                     url = "../api/SinglePlayerMaze/" + name + "/" + rows + "/" + cols;
                     $.getJSON(url).done(function (mazeFeedback) {
-                        $('.showWhenWait').fadeOut("slow", function () {
-                            maze = { "Name": mazeFeedback.Name, "Maze": mazeFeedback.Maze, "Rows": mazeFeedback.Rows, "Cols": mazeFeedback.Cols, "Start": mazeFeedback.Start, "Goal": mazeFeedback.End }
-                            //$('#bla').append(mazeFeedback.Maze);
-                            playerImage = document.getElementById("playerImage");
-                            exitImage = document.getElementById("goalImage");
-                            myMazeBoard = $('#mazeCanvas').mazePlugin(maze, playerImage, exitImage, true);
-                            $('.showWhenReady').fadeIn("slow", function () { });
-                        });
+                        //$('.showWhenWait').fadeOut("fast", function () { });
+                        $('.showWhenWait').hide();
+                        maze = { "Name": mazeFeedback.Name, "Maze": mazeFeedback.Maze, "Rows": mazeFeedback.Rows, "Cols": mazeFeedback.Cols, "Start": mazeFeedback.Start, "Goal": mazeFeedback.End }
+                        //$('#bla').append(mazeFeedback.Maze);
+                        document.title = mazeFeedback.Name;
+                        playerImage = document.getElementById("playerImage");
+                        exitImage = document.getElementById("goalImage");
+                        myMazeBoard = $('#mazeCanvas').mazePlugin(maze, playerImage, exitImage, true);
+                        $('.showWhenReady').fadeIn("slow", function () { });
 
                     }).fail(function (jqXHR, textStatus, err) {
                         alert('error ');
@@ -108,7 +110,7 @@
                     var algo = $('#algoSelect').val();
                     url = "../api/SinglePlayerMaze/Solve/" + name + "/" + algo;
                     $.getJSON(url).done(function (solveFeedback) {
-                        console.log(solveFeedback["Solution"]);
+                        //console.log(solveFeedback["Solution"]);
                         solution = { "Solution": solveFeedback["Solution"] };
                         myMazeBoard.solveMaze(solution);
                         //$('#mazeCanvas').solveMaze(solution);
