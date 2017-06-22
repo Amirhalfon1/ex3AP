@@ -118,7 +118,7 @@
 
             this.notifyOther = notifyOtherPlayer;
         }
-
+        //context.strokeRect(0, 0, myCanvas.height, myCanvas.width);
         for (var i = 0; i < rows; i++) {
             for (var j = 0; j < cols; j++) {
                 if (maze.Maze.charAt(++offset) == 1) {
@@ -166,7 +166,9 @@
                 if (directionKey) {
                     if ((myCanvas.currentPos.Row == mazeObject.Goal.Row) && (myCanvas.currentPos.Col == mazeObject.Goal.Col)) {
                         $("body").off("keydown", this.movePlayer);
-                        notifyOther("won", 0, 0);
+                        if (notifyOther != null) {
+                            notifyOther("won", 0, 0);
+                        }
                         alert("You Won!");
                     }
                 }

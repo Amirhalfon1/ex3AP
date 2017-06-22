@@ -1,7 +1,7 @@
 ﻿<!DOCTYPE html>
 <html>
 <head>
-    <title>The Maze</title>
+    <title id="titleOfPage">New Multiplayer game</title>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
@@ -23,8 +23,7 @@
                     <label for="mazeName" class="col-sm-2 control-label">Games</label>
                     <div class="col-sm-10">
                         <select id="gamesSelect" name="games">
-                            <!--<option value="0">BFS</option>
-                            <option value="1">DFS</option>-->
+
                         </select>
                     </div>
                 </div>
@@ -60,20 +59,20 @@
 
 
             </div>
+            <img  class="waitingImages" src="resources/waiting11.png" hidden="hidden"/>
             <div class="col-sm-4 text-center">
-                <label class="showWithConnection" for="cols" hidden="hidden" >Your Board</label>
-                <canvas class="showWithConnection" id="playerCanvas" width="300" height="300" style="border:2px black
-                                solid" hidden="hidden"  ></canvas>
-                <img class="waitingImages" src="resources/waiting.gif" hidden="hidden" height="300" width="300" />
+                <label class="showWithConnection" for="cols" hidden="hidden"  >Your Board</label>
+                <img class="waitingImages" src="resources/waiting.gif" hidden="hidden" height="400" width="500"  />
+                <canvas class="showWithConnection" id="playerCanvas" width="350" height="350" style="border:2px solid black;" hidden="hidden" ></canvas>
                 <img id="playerImage" src="resources/player.png" hidden="hidden" />
                 <img id="goalImage" src="resources/goal.png" hidden="hidden"  />
             </div>
 
             <div class="col-sm-4 text-center">
                 <label class="showWithConnection" for="cols" hidden="hidden" >Other Player Board</label>
-                <img class="waitingImages" src="resources/waiting.gif"  hidden="hidden"  height="300" width="300" />
-                <canvas class="showWithConnection" id="otherCanvas" width="300" height="300" style="border:2px black
-                                solid hidden="hidden" "></canvas>
+                <!--<img class="waitingImages" src="resources/waiting.gif" hidden="hidden"  height="300" width="300" />-->
+                <canvas class="showWithConnection" id="otherCanvas" width="350" height="350" 
+                               style="border:2px solid black;" hidden="hidden" ></canvas>
             </div>
 
         </div>
@@ -101,9 +100,12 @@
         }
         // Create a function that the hub can call to broadcast messages
         multiPlayer.client.drawMazes = function (mazeFeedback) {
-            //$('.waitingImages').fadeOut("slow", function () { });
-            $('.waitingImages').hide();
-            $('.showWithConnection').fadeIn("slow", function () { });
+            $('.waitingImages').fadeOut("slow", function () {
+                $('.showWithConnection').fadeIn("slow", function () { });
+            });
+            //$('.titleOfPage').empty();
+            //$('.titleOfPage').append(mazeFeedback.Name);
+            document.title = mazeFeedback.Name;
             //$('.waitingImages').hide();
             
             //alert('Starting to draw the mazes');
@@ -137,9 +139,44 @@
                 //Show something that indicate we are waiting to other player...
             });
 
+            //$('#gamesSelect').click(function () {
+                
+            //    multiPlayer.server.list().done(function (result) {
+            //        if (result) {
+            //            $('#gamesSelect').empty();
+            //            $.each(result, function (i, item) {
+            //                $('#gamesSelect').append($('<option>', {
+            //                    value: item,
+            //                    text: item
+            //                }));
+            //            });
+
+            //        }
+            //    });
+
+            //});
+
+            setInterval(function () {
+
+
+                    multiPlayer.server.list().done(function (result) {
+                        if (result) {
+                            if (result.lenght != $('#gamesSelect').length) {
+                                $('#gamesSelect').empty();
+                                $.each(result, function (i, item) {
+                                    $('#gamesSelect').append($('<option>', {
+                                        value: item,
+                                        text: item
+                                    }));
+                                });
+                            }
+                    }
+                });
+            }, 1000);
+
             $('#btnJoin').click(function () {
                 //$('.showWithConnection').fadeOut("slow", function () { });
-                $('.waitingImages').fadeIn("slow", function () { });
+                $('.waitingImages').show();
                 var gameName = $('#gamesSelect').val();
                 // Call the Send method on the hub
                 multiPlayer.server.join(gameName);
