@@ -12,11 +12,11 @@
 
 <body>
     <div id="navigationDiv"></div>
-    <div style="padding:20px;margin-top:30px;background-color:#1abc9c;height:1500px;">
+    <div class="mainDiv">
 
         <!--<form>-->
 
-        <div class="container body-content">
+        <div class="container body-content" >
             <h2>Multiplayer Game</h2><hr />
             <div class="col-sm-4 form-horizontal">
                 <div class="form-group">
@@ -87,6 +87,15 @@
     <script>
         $('#navigationDiv').load("menuBar.html");
 
+        //The id of the interval to kill when pressing on start
+        var intervalId;
+
+        if (localStorage.getItem("mazeRows") != null) {
+            $('#rows').val(localStorage.getItem("mazeRows"));
+        }
+        if (localStorage.getItem("mazeCols") != null) {
+            $('#cols').val(localStorage.getItem("mazeCols"));
+        }
 
         var myMazeBoard, otherMazeBoard;
         var multiPlayer = $.connection.mazeHub;
@@ -124,6 +133,9 @@
         $.connection.hub.start().done(function () {
            
             $('#btnStart').click(function () {
+
+                //Cancelling the games list refreshing.
+                clearInterval(intervalId);
                 //$('.showWithConnection').fadeOut("slow", function () { });
                 $('.waitingImages').fadeIn("slow", function () { });
                 var gameName = $('#name').val();
@@ -137,12 +149,12 @@
             });
 
 
-            setInterval(function () {
+            intervalId = setInterval(function () {
 
 
                     multiPlayer.server.list().done(function (result) {
                         if (result) {
-                            if (result.lenght != $('#gamesSelect').length) {
+                            if (result.length != $('#gamesSelect').children('option').length){
                                 $('#gamesSelect').empty();
                                 $.each(result, function (i, item) {
                                     $('#gamesSelect').append($('<option>', {

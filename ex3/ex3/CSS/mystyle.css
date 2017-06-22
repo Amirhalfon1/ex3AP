@@ -32,3 +32,9 @@ li {
 .active {
     background-color: #4CAF50;
 }
+.mainDiv {
+    padding:20px;
+    margin-top:30px;
+    background-color:#1abc9c;
+    height:765px;
+}

@@ -13,7 +13,7 @@
 <body>
 
     <div id="navigationDiv"></div>
-    <div style="padding:20px;margin-top:30px;background-color:#1abc9c;height:1500px;">
+    <div class="mainDiv">
 
         <!--<form>-->
 
@@ -80,6 +80,16 @@
     <script src="../Scripts/jQuery.mazePlugin.js"></script>
     <script>
         $('#navigationDiv').load("menuBar.html");
+
+        if (localStorage.getItem("mazeRows") != null) {
+            $('#rows').val(localStorage.getItem("mazeRows"));
+        }
+        if (localStorage.getItem("mazeCols") != null) {
+            $('#cols').val(localStorage.getItem("mazeCols")) ;
+        }
+        if (localStorage.getItem("mazeAlg") != null) {
+            $('#algoSelect').val(localStorage.getItem("mazeAlg"));
+        }
         var maze;
         var myMazeBoard;
         $("#startBtn").on("click", function () {
@@ -99,7 +109,6 @@
                         exitImage = document.getElementById("goalImage");
                         myMazeBoard = $('#mazeCanvas').mazePlugin(maze, playerImage, exitImage, true);
                         $('.showWhenReady').fadeIn("slow", function () { });
-
                     }).fail(function (jqXHR, textStatus, err) {
                         alert('error ');
                     });
