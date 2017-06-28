@@ -3,36 +3,38 @@
 <head>
     <meta charset="utf-8" />
     <title></title>
+    <script src="../Scripts/jquery-3.1.1.js"></script>
+    <script src="../Scripts/sha256.js"></script>
+    <link href="../Content/bootstrap.css" rel="stylesheet" />
+    <link rel="stylesheet" type="text/css" href="../CSS/loginStyle.css">
     <link rel="stylesheet" type="text/css" href="../CSS/mystyle.css">
-    <link rel="stylesheet" type="text/css" href="../CSS/register.css">
+
 </head>
 <body>
     <div id="navigationDiv"></div>
-    <form>
-        <div class="container" style="padding:20px;margin-top:30px;background-color:#1abc9c;height:1500px;">
-            <label><b>Name</b></label>
-            <input type="text" placeholder="Enter Name" class="form-control" name="name" required>
-
-            <label><b>Email</b></label>
-            <input type="text" placeholder="Enter Email" class="form-control" name="email" required>
-
-            <label><b>Password</b></label>
-            <input type="password" placeholder="Enter Password" class="form-control" name="psw" required>
-
-            <label><b>Repeat Password</b></label>
-            <input type="password" placeholder="Repeat Password" class="form-control" name="psw-repeat" required>
-  
-
-            <div class="clearfix">
-                <button type="button" class="cancelbtn">Cancel</button>
-                <button type="submit" class="signupbtn">Sign Up</button>
+    <div class="mainDiv">
+        <div class="login-page">
+            <div class="form">
+                <form class="login-form">
+                    <h2>Registration</h2><hr />
+                    <label>Name</label>
+                    <input type="text" placeholder="Enter Name" class="form-control" name="name" id="userName" required>
+                    <label>E-Mail</label>
+                    <input type="text" placeholder="Enter Email" class="form-control" name="email" id="email" required>
+                    <label>Password</label>
+                    <input type="password" placeholder="Enter Password" class="form-control" name="psw" id="password" required>
+                    <label>Repeat Password</label>
+                    <input type="password" placeholder="Repeat Password" class="form-control" name="psw-repeat" id="passwordConfirmation" required>
+                    <div class="clearfix">
+                        <button type="submit" class="signupbtn" onclick="register(); return false;">Sign Up</button>
+                    </div>
+                    <p class="message">Already registered? <a href="LoginPage.html">Sign In</a></p>
+                </form>
             </div>
         </div>
-    </form>
-    <script src="../Scripts/jquery-3.1.1.js"></script>
-    <script>
-        $('#navigationDiv').load("menuBar.html");
-    </script>
+    </div>
+    <script src="../Scripts/Navbar.js"></script>
+    <script src="../Scripts/Register.js"></script>
 
 </body>
 </html>

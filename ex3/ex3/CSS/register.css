@@ -44,6 +44,8 @@ button {
     width: 20%;
 }
 
+
+
 /* Add padding to container elements */
 .container {
 
@@ -62,4 +64,10 @@ button {
     .cancelbtn, .signupbtn {
         width: 100%;
     }
+}
+.mainDiv {
+    padding: 20px;
+    margin-top: 30px;
+    background-color: #1abc9c;
+    height: 765px;
 }

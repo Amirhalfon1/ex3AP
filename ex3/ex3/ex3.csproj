@@ -126,6 +126,7 @@
     <Content Include="Content\bootstrap-theme.min.css" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
+    <Content Include="CSS\loginStyle.css" />
     <Content Include="CSS\mystyle.css" />
     <Content Include="CSS\register.css" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
@@ -141,6 +142,7 @@
     <None Include="Scripts\jquery-3.1.1.intellisense.js" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
+    <Content Include="Scripts\CanPlayMulti.js" />
     <Content Include="Scripts\jquery-3.1.1.js" />
     <Content Include="Scripts\jquery-3.1.1.min.js" />
     <Content Include="Scripts\jquery-3.1.1.slim.js" />
@@ -148,34 +150,46 @@
     <Content Include="Scripts\jQuery.mazePlugin.js" />
     <Content Include="Scripts\jquery.signalR-2.2.2.js" />
     <Content Include="Scripts\jquery.signalR-2.2.2.min.js" />
+    <Content Include="Scripts\Login.js" />
+    <Content Include="Scripts\menuBarAfterLogin.js" />
+    <Content Include="Scripts\Multiplayer.js" />
+    <Content Include="Scripts\Navbar.js" />
+    <Content Include="Scripts\Rank.js" />
+    <Content Include="Scripts\Register.js" />
+    <Content Include="Scripts\Settings.js" />
+    <Content Include="Scripts\sha256.js" />
+    <Content Include="Scripts\Singleplayer.js" />
     <Content Include="Views\Homepage.html" />
+    <Content Include="Views\LoginPage.html" />
+    <Content Include="Views\menuBarAfterLogin.html" />
     <Content Include="Views\menuBar.html" />
     <Content Include="Views\MultiPlayerPage.html" />
-    <Content Include="Views\RegisterPage.html" />
     <Content Include="Views\RegistrationPage.html" />
     <Content Include="Views\resources\goal.png" />
     <Content Include="Views\resources\player.png" />
+    <Content Include="Views\resources\single.png" />
     <Content Include="Views\resources\waitForServer.png" />
     <Content Include="Views\resources\waiting.gif" />
     <Content Include="Views\resources\waiting11.png" />
     <Content Include="Views\SettingsPage.html" />
     <Content Include="Views\SinglePlayerPage.html" />
+    <Content Include="Views\UserRanking.html" />
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Controllers\SinglePlayerMazeController.cs" />
     <Compile Include="Controllers\UserDetailsModelsController.cs" />
+    <Compile Include="ex3Context.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="MazeHub.cs" />
-    <Compile Include="Migrations\201706181306486_Initial.cs" />
-    <Compile Include="Migrations\201706181306486_Initial.Designer.cs">
-      <DependentUpon>201706181306486_Initial.cs</DependentUpon>
+    <Compile Include="Migrations\201706281426006_Initial.cs" />
+    <Compile Include="Migrations\201706281426006_Initial.Designer.cs">
+      <DependentUpon>201706281426006_Initial.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
-    <Compile Include="Models\Ex3AppContext.cs" />
     <Compile Include="Models\MultiPlayerModel.cs" />
     <Compile Include="Models\SinglePlayerMazeManager.cs" />
     <Compile Include="Models\UserDetailsModel.cs" />
@@ -206,8 +220,8 @@
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201706181306486_Initial.resx">
-      <DependentUpon>201706181306486_Initial.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201706281426006_Initial.resx">
+      <DependentUpon>201706281426006_Initial.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

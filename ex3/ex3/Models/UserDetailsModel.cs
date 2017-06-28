@@ -8,14 +8,21 @@ namespace ex3.Models
 {
     public class UserDetailsModel
     {
-        [Required]
-        public int Id { get; set; }
-        [Required]
+        [Key]
         public string Name { get; set; }
-        [Required]
         public string Email { get; set; }
         [Required]
         public string Password { get; set; }
-
+        public int Wins { get; set; }
+        public int Loses { get; set; }
+        public int Record
+        {
+            get {
+                if((this.Wins - this.Loses) < 0)
+                    return 0;
+                return this.Wins - this.Loses;
+            }
+            set { }
+        }
     }
 }

@@ -15,64 +15,88 @@ namespace ex3.Controllers
 {
     public class UserDetailsModelsController : ApiController
     {
-        private Ex3AppContext db = new Ex3AppContext();
+        private ex3Context db = new ex3Context();
 
         // GET: api/UserDetailsModels
         public IQueryable<UserDetailsModel> GetUserDetailsModels()
         {
-            return db.UserDetailsModels;
+            return db.UserDetailsModels.OrderByDescending(player => player.Record);
         }
 
-        //// GET: api/UserDetailsModels/5
-        //[ResponseType(typeof(UserDetailsModel))]
-        //public IHttpActionResult GetUserDetailsModel(int id)
-        //{
-        //    UserDetailsModel userDetailsModel = db.UserDetailsModels.Find(id);
-        //    if (userDetailsModel == null)
-        //    {
-        //        return NotFound();
-        //    }
-
-        //    return Ok(userDetailsModel);
-        //}
-
-        // PUT: api/UserDetailsModels/5
-        [ResponseType(typeof(void))]
-        public IHttpActionResult PutUserDetailsModel(int id, UserDetailsModel userDetailsModel)
+        // GET: api/UserDetailsModels/5
+        [HttpGet]
+        [ResponseType(typeof(UserDetailsModel))]
+        public IHttpActionResult GetUserDetailsModel(string userName)
         {
-            if (!ModelState.IsValid)
+            UserDetailsModel userDetailsModel = db.UserDetailsModels.Find(userName);
+            if (userDetailsModel == null)
             {
-                return BadRequest(ModelState);
+                return NotFound();
             }
 
-            if (id != userDetailsModel.Id)
+            return Ok(userDetailsModel);
+        }
+
+        
+        [HttpGet]
+        [Route("api/UserDetailsModels/UpdateLost/{userName}")]
+        public IHttpActionResult UpdateLost(string userName)
+        {
+            UserDetailsModel userDetailsModel = db.UserDetailsModels.Find(userName);
+            if (userDetailsModel == null)
             {
+                return NotFound();
+            }
+
+            userDetailsModel.Loses++;
+
+            this.PutUserDetailsModel(userName, userDetailsModel);
+
+            return Ok(userDetailsModel);
+        }
+
+        // GET: api/UserDetailsModels/5
+        [HttpGet]
+        [Route("api/UserDetailsModels/UpdateWon/{userName}")]
+        public IHttpActionResult UpdateWon(string userName)
+        {
+            UserDetailsModel userDetailsModel = db.UserDetailsModels.Find(userName);
+            if (userDetailsModel == null)
+            {
+                return NotFound();
+            }
+
+            userDetailsModel.Wins++;
+
+            this.PutUserDetailsModel(userName, userDetailsModel);
+
+            return Ok(userDetailsModel);
+        }
+
+
+        // PUT: api/UserDetailsModels/
+        [ResponseType(typeof(void))]
+        public IHttpActionResult PutUserDetailsModel(string userName, UserDetailsModel user)
+        {
+
+            if (!ModelState.IsValid) return BadRequest(ModelState);
+            if (userName != user.Name)
                 return BadRequest();
-            }
-
-            db.Entry(userDetailsModel).State = EntityState.Modified;
-
+            db.Entry(user).State = EntityState.Modified;
             try
             {
                 db.SaveChanges();
             }
             catch (DbUpdateConcurrencyException)
             {
-                if (!UserDetailsModelExists(id))
-                {
-                    return NotFound();
-                }
-                else
-                {
-                    throw;
-                }
+                throw;
             }
-
             return StatusCode(HttpStatusCode.NoContent);
         }
 
-        // POST: api/UserDatabases
+        // POST: api/UserDetailsModels/
         [ResponseType(typeof(UserDetailsModel))]
+        [ActionName("RealPost")]
         public async Task<IHttpActionResult> PostUserDatabase(UserDetailsModel userDatabase)
         {
             if (!ModelState.IsValid)
@@ -83,24 +107,9 @@ namespace ex3.Controllers
             db.UserDetailsModels.Add(userDatabase);
             await db.SaveChangesAsync();
 
-            return CreatedAtRoute("DefaultApi", new { id = userDatabase.Id }, userDatabase);
+            return CreatedAtRoute("DefaultApi", new { id = userDatabase.Name }, userDatabase);
         }
 
-        //// POST: api/UserDetailsModels
-        //[ResponseType(typeof(UserDetailsModel))]
-        //[Route("api/UserDetailsModels/{name}/{email}/{password}")]
-        //public IHttpActionResult PostUserDetailsModel(UserDetailsModel userDetailsModel)
-        //{
-        //    if (!ModelState.IsValid)
-        //    {
-        //        return BadRequest(ModelState);
-        //    }
-
-        //    db.UserDetailsModels.Add(userDetailsModel);
-        //    db.SaveChanges();
-
-        //    return CreatedAtRoute("DefaultApi", new { id = userDetailsModel.Id }, userDetailsModel);
-        //}
 
         // DELETE: api/UserDetailsModels/5
         [ResponseType(typeof(UserDetailsModel))]
@@ -118,18 +127,33 @@ namespace ex3.Controllers
             return Ok(userDetailsModel);
         }
 
-        protected override void Dispose(bool disposing)
+        private bool UserExists(UserDetailsModel user)
         {
-            if (disposing)
+            foreach (UserDetailsModel u in db.UserDetailsModels)
             {
-                db.Dispose();
+                if (u.Name == user.Name)
+                {
+                    return true;
+                }
             }
-            base.Dispose(disposing);
+            return false;
         }
 
-        private bool UserDetailsModelExists(int id)
+        // GET: api/UserDatabases/5
+        [HttpGet]
+        [ResponseType(typeof(string))]
+        [Route("api/UserDetailsModels/CheckIfExists/{userName}")]
+        public string CheckIfExists(string userName)
         {
-            return db.UserDetailsModels.Count(e => e.Id == id) > 0;
+            if (db.UserDetailsModels.Count(e => e.Name == userName) > 0)
+            {
+                return "exist";
+            }
+            else
+            {
+                return "notExists";
+            }
         }
+
     }
 }

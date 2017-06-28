@@ -118,6 +118,10 @@
 
             this.notifyOther = notifyOtherPlayer;
         }
+
+        //clear the old one
+        context.clearRect(0, 0, myCanvas.width, myCanvas.height);
+
         //context.strokeRect(0, 0, myCanvas.height, myCanvas.width);
         for (var i = 0; i < rows; i++) {
             for (var j = 0; j < cols; j++) {
@@ -170,7 +174,7 @@
                         if (notifyOther != null) {
                             notifyOther("won", 0, 0);
                         }
-                        alert("You Won!");
+                        //alert("You Won!");
                     }
                 }
             }
@@ -194,7 +198,7 @@
                     moveRight(oldRow, oldCol);
                     break;
                 case "won":
-                    alert("You Lost!");
+                    //alert("You Lost!");
                     break;
                 default:
                     break;

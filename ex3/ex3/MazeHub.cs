@@ -46,7 +46,14 @@ namespace ex3
             string clientID = Context.ConnectionId;
             string otherPlayerID = model.GetOtherPlayerID(clientID);
             //TODO: Call to function to draw this move on the other client canvas.
-             Clients.Client(otherPlayerID).otherMoving(direction,oldRow,oldCol);
+            if (direction == "won")
+            {
+                Clients.Client(otherPlayerID).otherWon();
+            }
+            else
+            {
+                Clients.Client(otherPlayerID).otherMoving(direction, oldRow, oldCol);
+            }
         }
 
         //TODOBOOM
