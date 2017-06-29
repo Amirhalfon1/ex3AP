@@ -19,15 +19,13 @@
 
         <!--<form>-->
 
-        <div class="container body-content" >
+        <div class="container body-content">
             <h2>Multiplayer Game</h2><hr />
             <div class="col-sm-4 form-horizontal">
                 <div class="form-group">
                     <label for="mazeName" class="col-sm-2 control-label">Games</label>
                     <div class="col-sm-10">
-                        <select id="gamesSelect" name="games">
-
-                        </select>
+                        <select id="gamesSelect" name="games"></select>
                     </div>
                 </div>
                 <div class="form-group">
@@ -62,24 +60,25 @@
 
 
             </div>
-            <img  class="waitingImages" src="resources/waiting11.png" hidden="hidden"/>
+            <img class="waitingImages" src="resources/waiting11.png" hidden="hidden" />
             <div class="col-sm-4 text-center">
-                <label class="showWithConnection" for="cols" hidden="hidden"  >Your Board</label>
-                <img class="waitingImages" src="resources/waiting.gif" hidden="hidden" height="400" width="500"  />
-                <canvas class="showWithConnection" id="playerCanvas" width="350" height="350" style="border:2px solid black;" hidden="hidden" ></canvas>
+                <label class="showWithConnection" for="cols" hidden="hidden">Your Board</label>
+                <img class="waitingImages" src="resources/waiting.gif" hidden="hidden" height="400" width="500" />
+                <canvas class="showWithConnection" id="playerCanvas" width="350" height="350" style="border:2px solid black;" hidden="hidden"></canvas>
                 <img id="playerImage" src="resources/player.png" hidden="hidden" />
-                <img id="goalImage" src="resources/goal.png" hidden="hidden"  />
+                <img id="goalImage" src="resources/goal.png" hidden="hidden" />
             </div>
 
             <div class="col-sm-4 text-center">
-                <label class="showWithConnection" for="cols" hidden="hidden" >Other Player Board</label>
-                <canvas class="showWithConnection" id="otherCanvas" width="350" height="350" 
-                               style="border:2px solid black;" hidden="hidden" ></canvas>
+                <label class="showWithConnection" for="cols" hidden="hidden">Other Player Board</label>
+                <canvas class="showWithConnection" id="otherCanvas" width="350" height="350"
+                        style="border:2px solid black;" hidden="hidden"></canvas>
             </div>
 
         </div>
     </div>
     <script src="../Scripts/Multiplayer.js"></script>
+    <script src="../Scripts/ValidateForm.js"></script>
 
 </body>
 </html>

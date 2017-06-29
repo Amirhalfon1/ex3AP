@@ -159,6 +159,7 @@
     <Content Include="Scripts\Settings.js" />
     <Content Include="Scripts\sha256.js" />
     <Content Include="Scripts\Singleplayer.js" />
+    <Content Include="Scripts\ValidateForm.js" />
     <Content Include="Views\Homepage.html" />
     <Content Include="Views\LoginPage.html" />
     <Content Include="Views\menuBarAfterLogin.html" />
@@ -185,9 +186,9 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="MazeHub.cs" />
-    <Compile Include="Migrations\201706281426006_Initial.cs" />
-    <Compile Include="Migrations\201706281426006_Initial.Designer.cs">
-      <DependentUpon>201706281426006_Initial.cs</DependentUpon>
+    <Compile Include="Migrations\201706291247114_IntialDB.cs" />
+    <Compile Include="Migrations\201706291247114_IntialDB.Designer.cs">
+      <DependentUpon>201706291247114_IntialDB.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\MultiPlayerModel.cs" />
@@ -220,8 +221,8 @@
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201706281426006_Initial.resx">
-      <DependentUpon>201706281426006_Initial.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201706291247114_IntialDB.resx">
+      <DependentUpon>201706291247114_IntialDB.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

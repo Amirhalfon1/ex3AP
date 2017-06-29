@@ -7,13 +7,13 @@ namespace ex3.Migrations
     using System.Resources;
     
     [GeneratedCode("EntityFramework.Migrations", "6.2.0-beta1-60406")]
-    public sealed partial class Initial : IMigrationMetadata
+    public sealed partial class IntialDB : IMigrationMetadata
     {
-        private readonly ResourceManager Resources = new ResourceManager(typeof(Initial));
+        private readonly ResourceManager Resources = new ResourceManager(typeof(IntialDB));
         
         string IMigrationMetadata.Id
         {
-            get { return "201706281426006_Initial"; }
+            get { return "201706291247114_IntialDB"; }
         }
         
         string IMigrationMetadata.Source

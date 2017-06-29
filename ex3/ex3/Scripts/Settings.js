@@ -7,9 +7,11 @@ if (localStorage.getItem("mazeCols") != null) {
 if (localStorage.getItem("mazeAlg") != null) {
     $('#algSelect').val(localStorage.getItem("mazeAlg"));
 }
-$('#btnSave').click(function () {
-    localStorage.mazeRows = $('#rowsInput').val();
-    localStorage.mazeCols = $('#colsInput').val();
-    localStorage.mazeAlg = $('#algSelect').val();
-    window.location.href = '../Views/Homepage.html';
-});
+function saveClick() {
+    if (settingsValidation()) {
+        localStorage.mazeRows = $('#rowsInput').val();
+        localStorage.mazeCols = $('#colsInput').val();
+        localStorage.mazeAlg = $('#algSelect').val();
+        window.location.replace("HomePage.html");
+    }
+};

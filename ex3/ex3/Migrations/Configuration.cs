@@ -18,17 +18,6 @@ namespace ex3.Migrations
 
             //  You can use the DbSet<T>.AddOrUpdate() helper extension method 
             //  to avoid creating duplicate seed data.
-            context.UserDetailsModels.AddOrUpdate(
-            new Models.UserDetailsModel
-            {
-                Name = "gal",
-                Email = "gal@gal.com",
-                Password = "123456",
-                Wins = 0,
-                Loses = 0,
-                Record = 0
-            }
-            );
         }
     }
 }
