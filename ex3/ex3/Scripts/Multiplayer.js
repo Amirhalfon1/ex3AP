@@ -22,7 +22,7 @@
                     apiUrl = "../api/UserDetailsModels/UpdateWon/" + name;
                     $.get(apiUrl).done(function () {
                         alert("You Won!");
-                       // window.location.replace("HomePage.html");
+                        window.location.replace("UserRanking.html");
                     });
                 });
             } else {
@@ -80,7 +80,7 @@
                 apiUrl = "../api/UserDetailsModels/UpdateLost/" + name;
                 $.get(apiUrl).done(function () {
                     alert("You Lost!");
-                    // window.location.replace("HomePage.html");
+                    window.location.replace("UserRanking.html");
                 });
             });
         };

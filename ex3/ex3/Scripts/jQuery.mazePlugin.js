@@ -37,7 +37,7 @@
             } else {
                 //console.log(mazeObject);
                 var requiredCell = mazeObject.Maze.charAt((myCanvas.currentPos.Row * cols) + myCanvas.currentPos.Col - 1);
-                if (requiredCell === '0') {
+                if ((requiredCell === '0') && ((myCanvas.currentPos.Col - 1) >= 0)) {
                     context.clearRect(myCanvas.currentPos.Col * cellWidth, myCanvas.currentPos.Row * cellHeight,
                         cellWidth, cellHeight);
                     myCanvas.currentPos.Col = myCanvas.currentPos.Col - 1;
@@ -58,7 +58,7 @@
                     cellWidth, cellHeight);
             } else {
                 var requiredCell = mazeObject.Maze.charAt((myCanvas.currentPos.Row * cols) + myCanvas.currentPos.Col + 1);
-                if (requiredCell === '0') {
+                if ((requiredCell === '0') && ((myCanvas.currentPos.Col + 1) < cols)) {
                     context.clearRect(myCanvas.currentPos.Col * cellWidth, myCanvas.currentPos.Row * cellHeight,
                         cellWidth, cellHeight);
                     myCanvas.currentPos.Col = myCanvas.currentPos.Col + 1;
@@ -79,7 +79,7 @@
                     cellWidth, cellHeight);
             } else {
                 var requiredCell = mazeObject.Maze.charAt(((myCanvas.currentPos.Row - 1) * cols) + myCanvas.currentPos.Col);
-                if (requiredCell === '0') {
+                if ((requiredCell === '0') && ((myCanvas.currentPos.Row - 1) >= 0)) {
                     context.clearRect(myCanvas.currentPos.Col * cellWidth, myCanvas.currentPos.Row * cellHeight,
                         cellWidth, cellHeight);
                     myCanvas.currentPos.Row = myCanvas.currentPos.Row - 1;
@@ -101,7 +101,7 @@
                     cellWidth, cellHeight);
             } else {
                 var requiredCell = mazeObject.Maze.charAt(((myCanvas.currentPos.Row + 1) * cols) + myCanvas.currentPos.Col);
-                if (requiredCell === '0') {
+                if ((requiredCell === '0') && ((myCanvas.currentPos.Row + 1) < rows)) {
                     context.clearRect(myCanvas.currentPos.Col * cellWidth, myCanvas.currentPos.Row * cellHeight,
                         cellWidth, cellHeight);
                     myCanvas.currentPos.Row = myCanvas.currentPos.Row + 1;

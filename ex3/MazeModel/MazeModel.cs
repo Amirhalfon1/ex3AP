@@ -20,14 +20,14 @@ namespace MazeModel
         //contains all the DFS solutions
         private Dictionary<string, string> mazeDFSSolutions;
         //contains all the mazes
-        private Dictionary<string, Maze> multiplayerMazesDictionary;
+        //private Dictionary<string, Maze> multiplayerMazesDictionary;
         private Dictionary<string, Maze> singleplayerMazesDictionary;
         //contains all the games waiting for an other player.
         private Dictionary<string, Game> gamesLobby;
         //contains all the games that are being played.
         private Dictionary<string, Game> gamesBeingPlayed;
         //contains all the names af all the mazes names to prevent duplication.
-        private HashSet<string> multiplayerMazesAndGamesNames;
+        //private HashSet<string> multiplayerMazesAndGamesNames;
         private HashSet<string> singleplayerMazesAndGamesNames;
         DFSMazeGenerator mazeGenerator;
         BFS<Position> bfsSolver;
@@ -38,7 +38,7 @@ namespace MazeModel
             mazeGenerator = new DFSMazeGenerator();
             mazeBFSSolutions = new Dictionary<string, string>();
             mazeDFSSolutions = new Dictionary<string, string>();
-            multiplayerMazesDictionary = new Dictionary<string, Maze>();
+            //multiplayerMazesDictionary = new Dictionary<string, Maze>();
             singleplayerMazesDictionary = new Dictionary<string, Maze>();
             gamesLobby = new Dictionary<string, Game>();
 
@@ -46,7 +46,7 @@ namespace MazeModel
             bfsSolver = new BFS<Position>();
             dfsSolver = new DFS<Position>();
             //hash set that resposible to aware of two games and mazes with the same name.
-            multiplayerMazesAndGamesNames = new HashSet<string>();
+            //multiplayerMazesAndGamesNames = new HashSet<string>();
             singleplayerMazesAndGamesNames = new HashSet<string>();
         }
 
@@ -80,10 +80,10 @@ namespace MazeModel
         {
             Maze maze = mazeGenerator.Generate(rows, cols);
             maze.Name = name;
-            multiplayerMazesAndGamesNames.Add(name);
+            //multiplayerMazesAndGamesNames.Add(name);
             var newGame = new Game(firstPlayerID, maze); //publisher
             //adding the new maze to the maze dictionary.
-            multiplayerMazesDictionary.Add(name, maze);
+            //multiplayerMazesDictionary.Add(name, maze);
             //adding the game to the lobby till someone asks to join
             gamesLobby.Add(name, newGame);
             return newGame.PlayedMaze();
@@ -132,8 +132,8 @@ namespace MazeModel
         {
             Game currentGame = gamesBeingPlayed[firstPlayerID];
             //removing the maze of the game from the maze dictionery.
-            multiplayerMazesDictionary.Remove(currentGame.Name);
-            multiplayerMazesAndGamesNames.Remove(currentGame.Name);
+            //multiplayerMazesDictionary.Remove(currentGame.Name);
+            //multiplayerMazesAndGamesNames.Remove(currentGame.Name);
             //removing both of the players from the list.
             gamesBeingPlayed.Remove(firstPlayerID);
             gamesBeingPlayed.Remove(secondPlayerID);
@@ -238,15 +238,15 @@ namespace MazeModel
         /// <returns>
         ///   <c>true</c> if [is name already exists] [the specified name]; otherwise, <c>false</c>.
         /// </returns>
-        public bool IsNameAlreadyExists(string name)
-        {
-            if (multiplayerMazesAndGamesNames.Contains(name))
-            {
-                return true;
-            }
+        //public bool IsNameAlreadyExists(string name)
+        //{
+        //    if (multiplayerMazesAndGamesNames.Contains(name))
+        //    {
+        //        return true;
+        //    }
 
-            return false;
-        }
+        //    return false;
+        //}
 
         /// <summary>
         /// Determines whether [is name already exists] [the specified name].

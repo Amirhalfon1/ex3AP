@@ -1,6 +1,7 @@
 ﻿$(document).ready(function () {
     var usersUri = ("../api/UserDetailsModels");
     var table = document.getElementById("rankTable");
+    var body = document.createElement('tbody');
     $.get(usersUri).done(function (data) {
 
         for (i = 0; i < data.length; i++) {
@@ -22,7 +23,8 @@
             td.appendChild(document.createTextNode(data[i].Loses));
             tr.appendChild(td);
 
-            table.appendChild(tr);
+            body.appendChild(tr);
+            table.appendChild(body);
         }
     });
 })
